@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Cassanova</string>
+    <string name="continue_with_email">Continue with Email?</string>
+    <string name="continue_with_phone">Continue with Phone?</string>
+    <string name="send_code">Send Code</string>
+    <string name="hint_phone_number">(000) 000-0000</string>
+    <string name="lets_get_you_in">Let\'s get you in</string>
+    <string name="email_id">Email ID</string>
+    <string name="we_sent_5_digit_in_number">We\'ve sent a 5-digit code to/n
++1 (555) 555-5555</string>
+    <string name="we_sent_5_digit_in_email">We\'ve sent a 5-digit code to
+user@email.com</string>
+    <string name="enter_mobile_number">Enter your mobile number to receive a\n
+verification code</string>
+    <string name="enter_email">Enter your email ID to receive a\n
+verification code.</string>
+</resources>

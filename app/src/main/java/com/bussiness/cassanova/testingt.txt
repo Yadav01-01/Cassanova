@@ -1,0 +1,17 @@
+      Box(
+            modifier = Modifier
+                .size(140.dp)
+                .clip(CircleShape)
+                .border(4.dp, Color(0xFFE5EFF2), CircleShape)
+                .background(Color.LightGray),
+            contentAlignment = Alignment.Center
+        ) {
+            Image(
+                painter = imagePainter,
+                contentDescription = "Profile Image",
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(CircleShape),
+                contentScale = ContentScale.Crop
+            )
+        }

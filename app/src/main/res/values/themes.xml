@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Cassanova" parent="android:Theme.Material.Light.NoActionBar">
+    <!-- For API level 23 (Marshmallow) and above -->
+    <item name="android:windowLightStatusBar">true</item>
+    <!-- For API level 30 (Android 11) and above -->
+<!--    <item name="android:windowDecorFitsSystemWindows">false</item>-->
+
+    </style>
+    <style name="CustomDialogTheme" parent="ThemeOverlay.Material3.Dialog">
+        <item name="android:windowBackground">@color/dialog_scrim_color</item>
+        <!-- Or for a transparent background -->
+        <!-- <item name="android:windowBackground">@android:color/transparent</item> -->
+    </style>
+</resources>
