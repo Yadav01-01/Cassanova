@@ -144,26 +144,25 @@ Column (Modifier
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 // Country Code Picker
-                Box(
-                    modifier = Modifier
-                        .border(
-                            1.dp,
-                            if (showError && !isEmailValid) Color.Red else Color.Gray,
-                            RoundedCornerShape(8.dp)
-                        )
-                        .background(
-                            Color.Transparent,
-                            RoundedCornerShape(8.dp)
-                        )
-                ) {
-
-
-                }
+//                Box(
+//                    modifier = Modifier
+//                        .border(
+//                            1.dp,
+//                            if (showError && !isEmailValid) Color.Red else Color.Gray,
+//                            RoundedCornerShape(8.dp)
+//                        )
+//                        .background(
+//                            Color.Transparent,
+//                            RoundedCornerShape(8.dp)
+//                        )
+//                ) {
+//
+//
+//                }
 
 
                 Spacer(modifier = Modifier.width(12.dp))
 
-                // Phone Number Input
                 OutlinedTextField(
                     value = email,
                     onValueChange = {

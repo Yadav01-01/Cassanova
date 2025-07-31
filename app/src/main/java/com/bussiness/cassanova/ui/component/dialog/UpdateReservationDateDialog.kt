@@ -127,11 +127,6 @@ fun UpdateReservationDateDialog( onDismiss: () -> Unit = {},
                     }
                     Spacer(modifier = Modifier.height(25.dp))
 
-
-
-
-
-
                 }
             }
 

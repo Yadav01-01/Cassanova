@@ -45,7 +45,7 @@ fun EventInterestDialog(
     onSubmitClick: () -> Unit = {},
 ) {
     Dialog(
-        onDismissRequest = onDismiss,
+        onDismissRequest = {onDismiss()},
         properties = DialogProperties(
             usePlatformDefaultWidth = false,
             decorFitsSystemWindows = false

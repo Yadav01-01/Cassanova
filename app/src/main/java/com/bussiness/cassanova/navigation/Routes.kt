@@ -20,6 +20,15 @@ object Routes {
     const val AVAILABLE_TIME_SLOT_SCREEN = "AvailableTimeSlotsScreen"
     const val GUEST_COUNT_SCREEN = "GuestCountScreen"
     const val RESERVATION_SUMMARY_SCREEN = "ReservationSummaryScreen"
+    const val SETTING_SCREEN = "SettingScreen"
+    const val NOTIFICATION_SCREEN = "NotificationScreen"
+    const val PROFILE_SCREEN = "ProfileScreen"
+    const val EVENTS_EXPERIENCES_SCREEN = "EventsExperiencesScreen"
+    const val FAQ_SCREEN = "FaqScreen"
+    const val ABOUT_US_SCREEN = "AboutUsScreen"
+    const val TERM_SCREEN = "TermsConditionsScreen"
+    const val PRIVACY_SCREEN = "PrivacyPolicyScreen"
+    const val CONTACT_US_SCREEN = "ContactUsScreen"
 
 
 }

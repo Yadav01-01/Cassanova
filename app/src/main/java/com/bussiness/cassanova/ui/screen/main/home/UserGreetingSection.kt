@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -24,9 +25,66 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bussiness.cassanova.R
+import com.bussiness.cassanova.ui.component.CommonArrowButton
+import com.bussiness.cassanova.ui.component.dialog.EventInterestDialog
 import com.bussiness.cassanova.ui.theme.TextWhite
 import com.bussiness.cassanova.ui.theme.gradientBrush
 
+
+@Composable
+fun UserGreetingSection(
+    greeting: String,
+    userName: String,
+    userStatus: String
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .clip(RoundedCornerShape(10.dp)),
+            contentAlignment = Alignment.Center
+        ) {
+            Image(
+                painter = painterResource(id= R.drawable.dummy_social_media_post),
+                contentDescription = "Profile Image",
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        }
+
+        Spacer(modifier = Modifier.width(16.dp))
+
+        Column {
+            Text(
+                text = greeting,
+                color = TextWhite,
+                fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
+                fontSize = 18.sp
+            )
+
+            Text(
+                text = "$userName !",
+                fontSize = 28.sp,
+                fontFamily = FontFamily(Font(R.font.urbanist_bold)),
+                style = TextStyle(brush = gradientBrush)
+            )
+            Text(
+                text = userStatus,
+                color = TextWhite,
+                fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
+                fontSize = 16.sp
+            )
+        }
+    }
+}
+
+
+/*
 @Composable
 fun UserGreetingSection() {
 
@@ -80,3 +138,5 @@ fun UserGreetingSection() {
         }
     }
 }
+
+ */

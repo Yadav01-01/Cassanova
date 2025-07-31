@@ -163,8 +163,8 @@ fun MenuItemCard(item: MenuItem) {
         }
     }
 if (showDialog){
-    DeleteAccountDialog(onDismiss = {showDialog = false}, onDeleteClick = {showDialog = false })
-   // MenuItemDetailDialog(onDismiss = {showDialog = false}, onSubmitClick = {showDialog = false })
+  //  DeleteAccountDialog(onDismiss = {showDialog = false}, onDeleteClick = {showDialog = false })
+    MenuItemDetailDialog(onDismiss = {showDialog = false}, onSubmitClick = {showDialog = false })
 }
 
 }

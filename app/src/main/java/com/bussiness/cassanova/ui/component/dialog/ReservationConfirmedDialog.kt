@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
@@ -35,6 +36,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.ui.component.CommonButton
+import com.bussiness.cassanova.ui.theme.gradientBrush
 
 
 @Composable
@@ -46,110 +48,121 @@ fun ReservationConfirmedDialog(
     Dialog(
         onDismissRequest = {viewButtonClick()},
         properties = DialogProperties(
+            usePlatformDefaultWidth = false,
             dismissOnBackPress = true,
             dismissOnClickOutside = false
         )
     ) {
-
         Box(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color(0x804C4C4C)),
+            contentAlignment = Alignment.Center
         ) {
-
-            Image(
-                painter = painterResource(id = R.drawable.ic_cross_icon),
-                contentDescription = "Close",
-
-                modifier = Modifier
-                    .clickable {
-                        onDismiss()
-                    }
-                    .align(Alignment.TopCenter)
-                    .size(40.dp)
-                    .clip(CircleShape)
-                    .padding(bottom = 8.dp)
-                    .align(Alignment.TopStart)
-            )
-
             Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding( bottom = 15.dp, top = 40.dp),
-                contentAlignment = Alignment.Center
+                modifier = Modifier.fillMaxWidth()
             ) {
 
-                Card(
+                Image(
+                    painter = painterResource(id = R.drawable.ic_cross_icon),
+                    contentDescription = "Close",
+
                     modifier = Modifier
-                        .fillMaxWidth().padding(20.dp),
-                    shape = RoundedCornerShape(10.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.Black),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+                        .clickable {
+                            onDismiss()
+                        }
+                        .align(Alignment.TopCenter)
+                        .size(40.dp)
+                        .clip(CircleShape)
+                        .padding(bottom = 8.dp)
+                        .align(Alignment.TopStart)
+                )
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 15.dp, top = 30.dp),
+                    contentAlignment = Alignment.Center
                 ) {
-                    // Main content
-                    Column(
+
+                    Card(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                            .fillMaxWidth().padding(20.dp),
+                        shape = RoundedCornerShape(10.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color.Black),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                     ) {
-                        // Icon (you can replace with your actual icon resource)
-
-
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_icons_party_icon),
-                            contentDescription = "Party Icon",
+                        // Main content
+                        Column(
                             modifier = Modifier
-                                .wrapContentSize()
-
-                        )
-
-                        // Title
-                        Text(
-                            text = "Reservation Confirmed",
-                            fontFamily = FontFamily(Font(R.font.urbanist_bold)),
-                            fontSize = 30.sp,
-                            textAlign = TextAlign.Center,
-                            color = Color.White
-                        )
-
-                        // Description
-                        Text(
-                            text = "Your table has been successfully reserved.",
-                            fontSize = 16.sp,
-                            textAlign = TextAlign.Center,
-                            fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
-                            color = Color.White,
-                            lineHeight = 22.sp
-                        )
-
-                        Text(
-                            text = "Table ID - #A21",
-                            fontSize = 16.sp,
-                            textAlign = TextAlign.Center,
-                            fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
-                            color = Color.White,
-                            lineHeight = 22.sp
-                        )
-
-                        Text(
-                            text = "See full details in your bookings.",
-                            fontSize = 16.sp,
-                            textAlign = TextAlign.Center,
-                            fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
-                            color = Color.White,
-                            lineHeight = 22.sp
-                        )
+                                .fillMaxWidth()
+                                .padding(10.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            // Icon (you can replace with your actual icon resource)
 
 
-                        CommonButton(
-                            onClick = { viewButtonClick() },
-                            title = "Start Exploring",
-                            fontSize = 18.sp,
-                            modifier = Modifier.width(161.dp).height(46.dp)
-                        )
-                        Spacer(Modifier.height(2.dp))
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_icons_party_icon),
+                                contentDescription = "Party Icon",
+                                modifier = Modifier
+                                    .wrapContentSize()
+
+                            )
+
+                            // Title
+                            Text(
+                                text = "Reservation Confirmed",
+                                fontFamily = FontFamily(Font(R.font.urbanist_bold)),
+                                fontSize = 25.sp,
+                                textAlign = TextAlign.Center,
+                                color = Color.White
+                            )
+
+                            // Description
+                            Text(
+                                text = "Your table has been successfully reserved.",
+                                fontSize = 15.sp,
+                                textAlign = TextAlign.Center,
+                                fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
+                                color = Color.White,
+                                lineHeight = 22.sp
+                            )
+
+                            Text(
+                                text = "Table ID - #A21",
+                                fontSize = 15.sp,
+                                textAlign = TextAlign.Center,
+                                style = TextStyle(
+                                 brush = gradientBrush
+                                ),
+                                fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
+                                color = Color.White,
+                                lineHeight = 22.sp
+                            )
+
+                            Text(
+                                text = "See full details in your bookings.",
+                                fontSize = 15.sp,
+                                textAlign = TextAlign.Center,
+                                fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
+                                color = Color.White,
+                                lineHeight = 22.sp
+                            )
+
+
+                            CommonButton(
+                                onClick = { viewButtonClick() },
+                                title = "View Booking",
+                                fontSize = 18.sp,
+                                modifier = Modifier.width(161.dp).height(46.dp)
+                            )
+                            Spacer(Modifier.height(2.dp))
+                        }
                     }
                 }
+
             }
 
         }
