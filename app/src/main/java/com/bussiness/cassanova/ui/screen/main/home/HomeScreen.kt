@@ -1,9 +1,6 @@
 package com.bussiness.cassanova.ui.screen.main.home
 
 
-import android.os.Build
-import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -21,21 +18,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDialog
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -47,27 +36,42 @@ import androidx.navigation.compose.rememberNavController
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.EventHomeData
 import com.bussiness.cassanova.model.MenuItem
+import com.bussiness.cassanova.navigation.Routes
 import com.bussiness.cassanova.ui.component.CommonButton
 import com.bussiness.cassanova.ui.component.HeaderComponent
 import com.bussiness.cassanova.ui.theme.DarkBackground
 import com.bussiness.cassanova.ui.theme.GoldColor
+import com.bussiness.cassanova.viewModel.HomeViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.runtime.getValue
+
 
 
 @Composable
-fun HomeScreen(navController: NavHostController) {
-    val menuItems = listOf(
-        MenuItem("Truffle Parmesan...", "Appetizers", "$25",R.drawable.dummy_social_media_post),
-        MenuItem("Charcoal-Grilled T...", "Main Course", "$35",R.drawable.dummy_baby_pic),
-        MenuItem("Golden Honey...", "Signature Dish", "$55",R.drawable.dummy_social_media_post)
-    )
+fun HomeScreen(
+    navController: NavHostController,
+    viewModel: HomeViewModel = hiltViewModel()
+) {
+    val userName by viewModel.userName.collectAsState()
+    val greeting by viewModel.greeting.collectAsState()
+    val userStatus by viewModel.userStatus.collectAsState()
+    val loyaltyPoints by viewModel.loyaltyPoints.collectAsState()
+    val menuItems by viewModel.menuItems.collectAsState()
+    val events by viewModel.events.collectAsState()
 
-    val events = listOf(
-        EventHomeData(
-            "VIP Lounge Access",
-            "From wine tastings to rooftop sessions — only for our elite guests",
-            "Saturday, 27 May - 10:00 AM"
-        )
-    )
+//    val menuItems = listOf(
+//        MenuItem("Truffle Parmesan...", "Appetizers", "$25",R.drawable.dummy_social_media_post),
+//        MenuItem("Charcoal-Grilled T...", "Main Course", "$35",R.drawable.dummy_baby_pic),
+//        MenuItem("Golden Honey...", "Signature Dish", "$55",R.drawable.dummy_social_media_post)
+//    )
+//
+//    val events = listOf(
+//        EventHomeData(
+//            "VIP Lounge Access",
+//            "From wine tastings to rooftop sessions — only for our elite guests",
+//            "Saturday, 27 May - 10:00 AM"
+//        )
+//    )
 
     Column(
         modifier = Modifier
@@ -75,9 +79,13 @@ fun HomeScreen(navController: NavHostController) {
             .background(DarkBackground)
 
     ) {
-        // Top Bar
-      //  TopBar()
-        HeaderComponent()
+
+        HeaderComponent(
+            onNotificationClick ={navController.navigate(Routes.NOTIFICATION_SCREEN)},
+            onSettingClick = {
+                navController.navigate(Routes.SETTING_SCREEN)
+            }
+        )
 
         Column(
             modifier = Modifier
@@ -88,7 +96,12 @@ fun HomeScreen(navController: NavHostController) {
             Spacer(Modifier.height(20.dp))
 
             // User Greeting Section
-            UserGreetingSection()
+          //  UserGreetingSection()
+            UserGreetingSection(
+                greeting = greeting,
+                userName = userName,
+                userStatus = userStatus
+            )
 
             // Action Buttons
             ActionButtons()
@@ -99,16 +112,19 @@ fun HomeScreen(navController: NavHostController) {
             MenuSection(menuItems)
             Spacer(modifier = Modifier.height(20.dp))
 
-            EventItem()
+            EventItem(viewModel)
 
             Spacer(modifier = Modifier.height(20.dp))
             // Loyalty Points Section
-            LoyaltyPointsSection()
+           // LoyaltyPointsSection()
+            LoyaltyPointsSection(points = loyaltyPoints)
 
             Spacer(modifier = Modifier.height(32.dp))
         }
     }
 }
+
+
 
 
 
@@ -136,7 +152,7 @@ fun ActionButtons() {
                 )
                 .background(
                     color = Color.Transparent,
-                   // shape = RoundedCornerShape(8.dp)
+                    // shape = RoundedCornerShape(8.dp)
                 )
                 .clickable { /* Handle click action */ }
                 .padding(horizontal = 12.dp), // Add padding for better spacing
@@ -170,64 +186,13 @@ fun ActionButtons() {
         }
 
 
-        CommonButton(onClick = { }, title = "Become a Member?", modifier = Modifier.weight(1f).height(36.dp), fontSize = 14.sp, radius = 5.dp)
+        CommonButton(onClick = { }, title = "Become a Member?", modifier = Modifier
+            .weight(1f)
+            .height(36.dp), fontSize = 14.sp, radius = 5.dp)
 
 
     }
 }
-
-
-
-//@RequiresApi(Build.VERSION_CODES.O)
-//@Composable
-//fun DatePickerSample() {
-//    val context = LocalContext.current
-//    val datePickerState = rememberDatePickerState()
-//    val openDialog = remember { mutableStateOf(false) }
-//
-//    Column(
-//        modifier = Modifier
-//            .fillMaxSize()
-//            .padding(16.dp),
-//        verticalArrangement = Arrangement.Center,
-//        horizontalAlignment = Alignment.CenterHorizontally
-//    ) {
-//
-//        Button(onClick = { openDialog.value = true }) {
-//            Text(text = "Pick a Date")
-//        }
-//
-//        if (openDialog.value) {
-//            DatePickerDialog(
-//                onDismissRequest = { openDialog.value = false },
-//                confirmButton = {
-//                    TextButton(
-//                        onClick = {
-//                            openDialog.value = false
-//                            val selectedDateMillis = datePickerState.selectedDateMillis
-//                            val selectedDate = selectedDateMillis?.let {
-//                                Instant.ofEpochMilli(it).atZone(ZoneId.systemDefault()).toLocalDate()
-//                            }
-//                            selectedDate?.let {
-//                                Toast.makeText(context, "Selected: $it", Toast.LENGTH_SHORT).show()
-//                            }
-//                        }
-//                    ) {
-//                        Text("OK")
-//                    }
-//                },
-//                dismissButton = {
-//                    TextButton(onClick = { openDialog.value = false }) {
-//                        Text("Cancel")
-//                    }
-//                }
-//            ) {
-//                DatePicker(state = datePickerState)
-//            }
-//        }
-//    }
-//}
-
 
 
 

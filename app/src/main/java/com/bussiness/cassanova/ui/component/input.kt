@@ -1,6 +1,7 @@
 package com.bussiness.cassanova.ui.component
 
 import android.app.Activity
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -50,12 +51,28 @@ import com.bussiness.cassanova.ui.intro.OnboardingScreen
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.indication
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.SwitchDefaults
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.draw.clip
 
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.bussiness.cassanova.ui.theme.gradientBrush
 import java.nio.file.WatchEvent
 
 val gridScrollConnection = object : NestedScrollConnection {
@@ -329,4 +346,134 @@ fun CommonWhiteBorderButton(
         )
     }
 }
+
+
+val gradientGreyBrush = Brush.verticalGradient(
+    colors = listOf(
+        Color.Gray.copy(alpha = 0.3f),
+        Color.Gray.copy(alpha = 0.3f),
+        Color.Gray.copy(alpha = 0.3f)
+    )
+)
+
+@Composable
+fun CustomSwitch(
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+    modifier: Modifier = Modifier,
+    width: Dp = 40.dp,
+    height: Dp = 28.dp,
+    thumbSize: Dp = 14.dp,
+    trackColor: Brush = if (checked) gradientBrush else gradientGreyBrush,
+    thumbColor: Color = if (checked) Color.Black else Color.Gray
+) {
+    val thumbOffset by animateDpAsState(
+        targetValue = if (checked) width - thumbSize - 5.dp else 5.dp,
+        label = "thumbOffset"
+    )
+
+    Box(
+        modifier = modifier
+            .width(width)
+            .height(height)
+            .clip(CircleShape)
+            .background(trackColor)
+            .clickable { onCheckedChange(!checked) }
+            .padding(2.dp),
+        contentAlignment = Alignment.CenterStart
+    ) {
+        Box(
+            modifier = Modifier
+                .size(thumbSize)
+                .offset(x = thumbOffset)
+                .background(thumbColor, CircleShape)
+        )
+    }
+}
+
+
+@Composable
+fun CommonOutlinedTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    hintText: String,
+    modifier: Modifier = Modifier,
+    leadingIconResId: Int? = null,
+    keyboardType: KeyboardType = KeyboardType.Text,
+    singleLine: Boolean = true
+) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier,
+        leadingIcon = {
+            leadingIconResId?.let {
+                Image(
+                    painter = painterResource(id = it),
+                    contentDescription = "Icon",
+                    modifier = Modifier.size(24.dp)
+                )
+            }
+        },
+        placeholder = {
+            Text(
+                text = hintText,
+                color = Color(0xFF808080),
+                fontSize = 14.sp,
+                fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
+            )
+        },
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedBorderColor = Color(0xFFD4AF37),
+            unfocusedBorderColor = Color.Gray,
+            focusedTextColor = Color.White,
+            unfocusedTextColor = Color(0xFF808080),
+            cursorColor = Color(0xFFD4AF37)
+        ),
+        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+        singleLine = singleLine,
+        shape = RoundedCornerShape(10.dp)
+    )
+}
+
+
+@Composable
+fun InputField(
+    input: String,
+    onValueChange: (String) -> Unit,
+    placeholder: String,
+    modifier: Modifier = Modifier,
+) {
+    androidx.compose.material.OutlinedTextField(
+        value = input,
+        onValueChange = onValueChange,
+        placeholder = {
+            Text(
+                text = placeholder,
+                fontFamily = FontFamily(Font(R.font.urbanist_medium)),
+                fontSize = 14.sp,
+                color = Color(0xFF808080)
+            )
+        },
+        textStyle = TextStyle(
+            fontFamily = FontFamily(Font(R.font.urbanist_medium)),
+            fontSize = 14.sp,
+            color = Color.White,
+        ),
+        modifier = modifier
+            .fillMaxWidth()
+            .height(56.dp), // Slightly taller for vertical alignment
+        shape = RoundedCornerShape(10.dp),
+        colors = androidx.compose.material.TextFieldDefaults.outlinedTextFieldColors(
+            focusedBorderColor = Color(0xFFD4AF37),
+            unfocusedBorderColor = Color(0xFF808080),
+            cursorColor = Color(0xFFD4AF37),
+            focusedLabelColor = Color.Transparent,
+            unfocusedLabelColor = Color.Transparent,
+            textColor = Color.White
+        ),
+        singleLine = false
+    )
+}
+
 

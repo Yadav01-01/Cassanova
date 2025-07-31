@@ -42,11 +42,10 @@ import com.bussiness.cassanova.ui.theme.TextWhite
 
 
 @Composable
-fun HeaderComponent() {
+fun HeaderComponent( onNotificationClick: () -> Unit,onSettingClick: () -> Unit) {
     Column(modifier = Modifier.fillMaxWidth()
         .background(Color.Black)
         ,) {
-
 
     Row(
         modifier = Modifier
@@ -63,8 +62,12 @@ fun HeaderComponent() {
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            SettingsIcon()
-            NotificationIcon()
+            SettingsIcon(onSettingClick = {
+                onSettingClick()
+            })
+            NotificationIcon(onNotificationClick = {
+                onNotificationClick()
+            })
         }
     }
         Divider(thickness = 2.dp, color = Color.White)
@@ -105,8 +108,12 @@ fun ReverseTableHeader(title: String){
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                SettingsIcon()
-                NotificationIcon()
+                SettingsIcon(onSettingClick = {
+
+                })
+                NotificationIcon(onNotificationClick = {
+
+                })
             }
         }
         Divider(thickness = 2.dp, color = Color.White)
@@ -126,16 +133,18 @@ fun ReverseTableHeader(title: String){
 
 
 @Composable
-fun SettingsIcon() {
+fun SettingsIcon(onSettingClick: () -> Unit) {
     Image(
         painter = painterResource(id = R.drawable.ic_settings_icon),
-        contentDescription = "", modifier = Modifier.size(40.dp)
+        contentDescription = "", modifier = Modifier.size(40.dp).clickable{
+            onSettingClick()
+        }
     )
 }
 
 
 @Composable
-fun NotificationIcon() {
+fun NotificationIcon(onNotificationClick: () -> Unit) {
     BadgedBox(
         badge = {
             Badge(
@@ -169,7 +178,7 @@ fun NotificationIcon() {
                     ),
                     shape = CircleShape
                 )
-                .clickable { /* Handle notification click */ },
+                .clickable { onNotificationClick()},
             contentAlignment = Alignment.Center
         ) {
             Image(
@@ -307,9 +316,13 @@ fun SummaryHeader(title: String, onBackClick: () -> Unit) {
             }
 
             Row {
-                SettingsIcon()
+                SettingsIcon(onSettingClick = {
+
+                })
                 Spacer(Modifier.width(10.dp))
-                NotificationIcon()
+                NotificationIcon(onNotificationClick = {
+
+                })
             }
         }
         HorizontalDivider(modifier = Modifier.fillMaxWidth().height(2.dp).background(Color(0xFFD9D9D9)))

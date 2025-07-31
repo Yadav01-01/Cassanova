@@ -38,104 +38,112 @@ fun DeleteAccountDialog(onDeleteClick: () -> Unit= {},
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(
+            usePlatformDefaultWidth = false,
             dismissOnBackPress = true,
             dismissOnClickOutside = false
         )
     ) {
         Box(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color(0x804C4C4C)).padding(horizontal = 20.dp),
+            contentAlignment = Alignment.Center
         ) {
-            // Main card content
-            Image(
-                painter = painterResource(id = R.drawable.ic_cross_icon),
-                contentDescription = "Close",
-
-                modifier = Modifier
-                    .clickable {
-                        onDismiss()
-                    }
-                    .align(Alignment.TopCenter)
-                    .size(40.dp)
-                    .clip(CircleShape)
-                    .padding(bottom = 8.dp)
-                    .align(Alignment.TopStart)
-            )
-
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 16.dp, top = 40.dp),
-                shape = RoundedCornerShape(10.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.Black),
-                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+            Box(
+                modifier = Modifier.fillMaxWidth()
             ) {
-                // Main content
-                Column(
+                // Main card content
+                Image(
+                    painter = painterResource(id = R.drawable.ic_cross_icon),
+                    contentDescription = "Close",
+
+                    modifier = Modifier
+                        .clickable {
+                            onDismiss()
+                        }
+                        .align(Alignment.TopCenter)
+                        .size(40.dp)
+                        .clip(CircleShape)
+                        .padding(bottom = 8.dp)
+                        .align(Alignment.TopStart)
+                )
+
+                Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(20.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                        .padding(bottom = 16.dp, top = 40.dp),
+                    shape = RoundedCornerShape(10.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.Black),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
                 ) {
-                    // Icon (you can replace with your actual icon resource)
-
-
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_delete_dialog_icon),
-                        contentDescription = "Close",
+                    // Main content
+                    Column(
                         modifier = Modifier
-                            .wrapContentSize()
-
-                    )
-
-                    // Title
-                    Text(
-                        text = "Delete Account !",
-                        fontFamily = FontFamily(Font(R.font.urbanist_bold)),
-                        fontSize = 30.sp,
-                        textAlign = TextAlign.Center,
-                        color = Color.White
-                    )
-
-                    // Description
-                    Text(
-                        text = "Are you sure you want to delete your\n account with Cassanova Bar & Lounge?\n  All your data, reservation history, and\n loyalty points will be permanently deleted.\n This action cannot be undone.",
-                        fontSize = 15.sp,
-                        textAlign = TextAlign.Center,
-                        fontFamily = FontFamily(Font(R.font.urbanist_medium)),
-                        color = Color.White,
-                        lineHeight = 24.sp
-                    )
-
-                    Spacer(Modifier.height(5.dp))
-
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                            .fillMaxWidth()
+                            .padding(20.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
-                        CommonButton(
-                            title = "Delete",
-                            modifier = Modifier.weight(1f).height(46.dp),
-                            onClick = {onDeleteClick()},
-                            fontSize = 18.sp,
-                            radius = 10.dp
-                        )
+                        // Icon (you can replace with your actual icon resource)
 
-                        CommonWhiteBorderButton(
-                            title = "Cancel",
-                            modifier = Modifier.weight(1f).height(46.dp),
-                            onClick = {onCancelClick()},
-                            fontSize = 18.sp,
-                            radius = 10.dp
+
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_delete_dialog_icon),
+                            contentDescription = "Close",
+                            modifier = Modifier
+                                .wrapContentSize()
 
                         )
 
+                        // Title
+                        Text(
+                            text = "Delete Account !",
+                            fontFamily = FontFamily(Font(R.font.urbanist_bold)),
+                            fontSize = 30.sp,
+                            textAlign = TextAlign.Center,
+                            color = Color.White
+                        )
+
+                        // Description
+                        Text(
+                            text = "Are you sure you want to delete your\n account with Cassanova Bar & Lounge?\n  All your data, reservation history, and\n loyalty points will be permanently deleted.\n This action cannot be undone.",
+                            fontSize = 15.sp,
+                            textAlign = TextAlign.Center,
+                            fontFamily = FontFamily(Font(R.font.urbanist_medium)),
+                            color = Color.White,
+                            lineHeight = 24.sp
+                        )
+
+                        Spacer(Modifier.height(5.dp))
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            CommonButton(
+                                title = "Delete",
+                                modifier = Modifier.weight(1f).height(46.dp),
+                                onClick = { onDeleteClick() },
+                                fontSize = 18.sp,
+                                radius = 10.dp
+                            )
+
+                            CommonWhiteBorderButton(
+                                title = "Cancel",
+                                modifier = Modifier.weight(1f).height(46.dp),
+                                onClick = { onCancelClick() },
+                                fontSize = 18.sp,
+                                radius = 10.dp
+
+                            )
+
+
+                        }
 
                     }
-
                 }
-            }
 
+            }
         }
     }
 }
