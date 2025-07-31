@@ -1,5 +1,7 @@
 package com.bussiness.cassanova.ui.screen.main
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -15,6 +17,7 @@ import com.bussiness.cassanova.navigation.MainNavGraph
 import com.bussiness.cassanova.navigation.Routes
 import com.bussiness.cassanova.ui.component.CustomBottomBar
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MainScreen(authNavController: NavHostController) {
     val navController = rememberNavController()

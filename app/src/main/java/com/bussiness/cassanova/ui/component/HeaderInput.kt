@@ -236,52 +236,6 @@ fun SettingHeader(title: String, onBackClick: () -> Unit) {
 }
 
 
-/*
-@Composable
-fun SummaryHeader(title: String, onBackClick: () -> Unit) {
-    Column(modifier = Modifier.background(Color.Black)) {
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(
-                start = 20.dp,
-                end = 20.dp,
-                top = 17.dp,
-                bottom = 17.dp
-            )
-        ) {
-            Row(
-                modifier = Modifier.weight(1f).fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_back_icon),
-                    contentDescription = "back",
-                    tint = TextWhite,
-                    modifier = Modifier
-                        .clickable { onBackClick() }
-                        .wrapContentSize()
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    SettingsIcon()
-                    NotificationIcon()
-                }
-            }
-
-
-
-        }
-        HorizontalDivider(modifier = Modifier.fillMaxWidth().height(2.dp).background(Color(0xFFD9D9D9)))
-
-    }
-}
-
- */
-
 
 @Composable
 fun SummaryHeader(title: String, onBackClick: () -> Unit) {

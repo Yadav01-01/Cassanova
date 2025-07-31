@@ -73,13 +73,12 @@ dependencies {
     implementation (libs.androidx.media3.exoplayer)
     implementation (libs.androidx.media3.ui)
     //countryCodePicker
-    implementation(libs.komposecountrycodepicker)
+//    implementation(libs.komposecountrycodepicker)
     //coil
     implementation(libs.coil.compose.v260)
     //hilt
     implementation (libs.hilt.android)
     kapt (libs.hilt.compiler)
-
     // Hilt for Jetpack Compose
     implementation (libs.androidx.hilt.navigation.compose)
     implementation (libs.accompanist.flowlayout)
