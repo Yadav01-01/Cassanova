@@ -41,9 +41,8 @@ fun MainScreen(authNavController: NavHostController) {
                 selectedRoute = currentRoute,
                 onItemClick = { navItem ->
                     navController.navigate(navItem.route) {
-                        popUpTo(navController.graph.startDestinationId) { saveState = true }
+                        popUpTo(0) { inclusive = true }
                         launchSingleTop = true
-                        restoreState = true
                     }
                 }
             )
@@ -52,8 +51,6 @@ fun MainScreen(authNavController: NavHostController) {
         MainNavGraph(navController = navController, modifier = Modifier.padding(innerPadding))
     }
 }
-
-
 
 @Composable
 fun getCurrentRoute(navController: NavController): String {

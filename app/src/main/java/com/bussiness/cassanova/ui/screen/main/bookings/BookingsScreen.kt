@@ -20,14 +20,33 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.bussiness.cassanova.R
+import com.bussiness.cassanova.model.Reservation
 import com.bussiness.cassanova.ui.component.BookingSelection
-import com.bussiness.cassanova.ui.component.LoyaltyPointsBanner
+import com.bussiness.cassanova.ui.component.PreviousBanner
 import com.bussiness.cassanova.ui.component.ReverseTableHeader
 
 @Composable
 fun  BookingsScreen(navController: NavHostController) {
 
     var selectedOption by remember { mutableStateOf("Upcoming") }
+    val sampleReservation = Reservation(
+        tableId = "#A21",
+        date = "Monday, 2 June",
+        time = "10:00 AM",
+        itemCount = 2,
+        totalAmount = 150.0,
+        guests = 4,
+        specialRequest = "Birthday Party",
+        occasion = "Birthday Party",
+        occasionIcon = R.drawable.gift_ic, // Optional
+        pointsEarned = "15",
+        status = "Cancelled", // Optional
+        message = "You earned 15 points from this reservation."
+    )
+
+
+
 
     Column(modifier = Modifier.fillMaxSize().background(Color.Black)) {
 
@@ -60,7 +79,7 @@ fun  BookingsScreen(navController: NavHostController) {
 
             when (selectedOption) {
                 "Upcoming" -> UpcomingBookingsScreen()
-                "Previous" -> LoyaltyPointsBanner(120, onRedeemClick = { })
+                "Previous" -> PreviousBanner(reservation = sampleReservation)
             }
 
 

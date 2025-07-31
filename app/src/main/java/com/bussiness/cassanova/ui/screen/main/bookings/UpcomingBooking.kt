@@ -36,7 +36,7 @@ fun UpcomingBookingsScreen() {
             BookingCard(
                 booking = booking,
                 onStatusClick = { /* Handle */ },
-                onMenuClick = { /* Handle */ }
+                onCancelClick = { /* Handle */ }
             )
         }
     }
