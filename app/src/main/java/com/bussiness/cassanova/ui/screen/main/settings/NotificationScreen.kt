@@ -29,6 +29,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
@@ -42,7 +43,7 @@ import com.bussiness.cassanova.viewModel.NotificationViewModel
 fun NotificationScreen(
     navController: NavHostController
 ) {
-    val viewModel: NotificationViewModel = viewModel()
+    val viewModel: NotificationViewModel = hiltViewModel()
     val notifications by viewModel.notifications.collectAsState()
 
     Column(Modifier.fillMaxSize().background(Color.Black)) {

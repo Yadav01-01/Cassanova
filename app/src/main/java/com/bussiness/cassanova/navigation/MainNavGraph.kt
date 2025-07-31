@@ -7,15 +7,14 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.bussiness.cassanova.ui.screen.main.CalendarScreen
+import com.bussiness.cassanova.ui.screen.main.bookings.BookingsScreen
 import com.bussiness.cassanova.ui.screen.main.home.HomeScreen
 import com.bussiness.cassanova.ui.screen.main.menu.MenuScreen
-import com.bussiness.cassanova.ui.screen.main.menu.RestaurantMenuScreen
+import com.bussiness.cassanova.ui.screen.main.points.LoyaltyPointsScreen
 import com.bussiness.cassanova.ui.screen.main.reverse.AvailableTimeSlotsScreen
 import com.bussiness.cassanova.ui.screen.main.reverse.GuestCountScreen
 import com.bussiness.cassanova.ui.screen.main.reverse.ReservationSummaryScreen
 import com.bussiness.cassanova.ui.screen.main.reverse.ReverseTableScreen
-import com.bussiness.cassanova.ui.screen.main.settings.NotificationScreen
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -32,8 +31,8 @@ fun MainNavGraph(
         composable(Routes.HOME_SCREEN) { HomeScreen(navController) }
         composable(Routes.RESERVE_SCREEN) { ReverseTableScreen(navController) }
         composable(Routes.MENU_SCREEN) { MenuScreen(navController) }
-        composable(Routes.POINTS_SCREEN) { HomeScreen(navController) }
-        composable(Routes.BOOKINGS_SCREEN) { HomeScreen(navController) }
+        composable(Routes.POINTS_SCREEN) { LoyaltyPointsScreen(navController) }
+        composable(Routes.BOOKINGS_SCREEN) { BookingsScreen(navController) }
         composable(Routes.AVAILABLE_TIME_SLOT_SCREEN) { AvailableTimeSlotsScreen(navController) }
         composable(Routes.GUEST_COUNT_SCREEN) { GuestCountScreen(navController) }
         composable(Routes.RESERVATION_SUMMARY_SCREEN) { ReservationSummaryScreen(navController) }
