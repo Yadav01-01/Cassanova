@@ -149,7 +149,7 @@ fun LoyaltyPointsBanner(
                 modifier = Modifier.weight(1f).padding(start = 16.dp, bottom = 16.dp)
             ) {
                 Text(
-                    text = "Use your points to save on food &\ndrinks (excluding alcohol).",
+                    text = "Use your points to save on food & drinks (excluding alcohol).",
                     fontSize = 14.sp,
                     lineHeight = 18.sp,
                     fontWeight = FontWeight.SemiBold,
@@ -238,7 +238,7 @@ fun OrderCard(
         ) {
             Column {
                 Row(
-                    modifier = Modifier.fillMaxWidth().padding(top = 5.dp),
+                    modifier = Modifier.fillMaxWidth().padding(top = 10.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
@@ -290,7 +290,22 @@ fun OrderCard(
                                 fontSize = 14.sp
                             )
                         ) {
-                            append(earnedPoints)
+                            withStyle(
+                                style = SpanStyle(
+                                    fontWeight = FontWeight.Bold,
+                                    fontFamily = FontFamily(Font(R.font.urbanist_bold)),
+                                    brush = Brush.linearGradient(
+                                        colors = listOf(
+                                            Color(0xFFC7A65E),
+                                            Color(0xFFFBE29A),
+                                            Color(0xFFBE9B43)
+                                        )
+                                    )
+                                )
+                            ) {
+                                append("$earnedPoints ")
+                            }
+
                         }
                         append(" points from this reservation.")
                     },
@@ -305,7 +320,7 @@ fun OrderCard(
         Box(
             modifier = Modifier
                 .align(Alignment.TopEnd)
-                .offset(y = (-12).dp, x = (-12).dp)
+                .offset(y = (-15).dp, x = (-12).dp)
                 .background(brush = Brush.verticalGradient(colors = listOf(Color(0xFFC7A65E), Color(0xFFFBE29A), Color(0xFFBE9B43))), shape = RoundedCornerShape(5.dp))
                 .padding(horizontal = 10.dp, vertical = 5.dp)
         ) {
