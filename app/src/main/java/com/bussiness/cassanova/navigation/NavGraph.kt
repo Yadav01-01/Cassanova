@@ -1,10 +1,14 @@
 package com.bussiness.cassanova.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -14,12 +18,12 @@ import com.bussiness.cassanova.base.VerificationType
 import com.bussiness.cassanova.ui.intro.OnboardingScreen
 import com.bussiness.cassanova.ui.intro.SplashScreen
 import com.bussiness.cassanova.ui.screen.auth.CassanovaVerifyOTPScreen
-import com.bussiness.cassanova.ui.screen.auth.CassanovaVerifyOTPScreenPreview
 import com.bussiness.cassanova.ui.screen.auth.EmailLoginScreen
 import com.bussiness.cassanova.ui.screen.auth.NotificationPermissionScreen
 import com.bussiness.cassanova.ui.screen.auth.PhoneNumberLoginScreen
 import com.bussiness.cassanova.ui.screen.main.MainScreen
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun NavGraph(navController: NavHostController) {
     Box(
@@ -29,7 +33,8 @@ fun NavGraph(navController: NavHostController) {
     ) {
         NavHost(
             navController = navController,
-            startDestination = Routes.SPLASH
+            startDestination = Routes.SPLASH,
+            modifier = Modifier.background(Color.Black)
         ) {
 
             composable(Routes.SPLASH) {

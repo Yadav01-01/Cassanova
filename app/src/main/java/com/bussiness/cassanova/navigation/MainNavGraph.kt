@@ -2,8 +2,10 @@ package com.bussiness.cassanova.navigation
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -37,7 +39,7 @@ fun MainNavGraph(
     NavHost(
         navController = navController,
         startDestination = Routes.HOME_SCREEN,
-        modifier = modifier
+        modifier = modifier.background(Color.Black)
     ) {
         composable(Routes.HOME_SCREEN) { HomeScreen(navController) }
         composable(Routes.RESERVE_SCREEN) { ReverseTableScreen(navController) }
