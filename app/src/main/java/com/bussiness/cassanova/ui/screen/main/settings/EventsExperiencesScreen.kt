@@ -48,13 +48,18 @@ import com.bussiness.cassanova.ui.theme.gradientBrush
 
 @Composable
 fun EventsExperiencesScreen(navController: NavHostController) {
+    var backPressedTime by remember { mutableStateOf(0L) }
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
     ) {
         SettingHeader(title = "Events & Experiences", onBackClick = {
-            navController.popBackStack()
+            val currentTime = System.currentTimeMillis()
+            if (currentTime - backPressedTime > 1000) { // 1 second threshold
+                backPressedTime = currentTime
+                navController.popBackStack()
+            }
         })
 
 

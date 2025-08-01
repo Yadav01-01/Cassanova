@@ -62,6 +62,7 @@ fun SettingScreen(authNavController: NavController, navController: NavHostContro
     var notificationsEnabled by remember { mutableStateOf(true) }
     var showDeleteDialog by remember { mutableStateOf(false) }
     var showLogOutDialog by remember { mutableStateOf(false) }
+    var backPressedTime by remember { mutableStateOf(0L) }
     val sheetState = rememberModalBottomSheetState(
         skipPartiallyExpanded = true,
         confirmValueChange = { it != SheetValue.PartiallyExpanded }
@@ -72,7 +73,14 @@ fun SettingScreen(authNavController: NavController, navController: NavHostContro
             .background(Color.Black)
     ) {
         SettingHeader(title = "Settings", onBackClick = {
-            navController.popBackStack()
+
+
+            val currentTime = System.currentTimeMillis()
+            if (currentTime - backPressedTime > 1000) { // 1 second threshold
+                backPressedTime = currentTime
+                navController.popBackStack()
+            }
+           // navController.popBackStack()
         })
 
         val menuItems = listOf(

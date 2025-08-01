@@ -19,6 +19,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,10 +48,14 @@ fun NotificationScreen(
 ) {
     val viewModel: NotificationViewModel = hiltViewModel()
     val notifications by viewModel.notifications.collectAsState()
-
+    var backPressedTime by remember { mutableStateOf(0L) }
     Column(Modifier.fillMaxSize().background(Color.Black)) {
         SettingHeader(title = "Notifications",onBackClick= {
-            navController.popBackStack()
+            val currentTime = System.currentTimeMillis()
+            if (currentTime - backPressedTime > 1000) { // 1 second threshold
+                backPressedTime = currentTime
+                navController.popBackStack()
+            }
         })
         LazyColumn(
             modifier = Modifier
