@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -157,7 +158,7 @@ fun OnboardingPageContent(
 
         // Background image
         Box(  modifier = Modifier
-            .height(500.dp).clip(RoundedCornerShape(bottomStart = 30.dp, bottomEnd = 30.dp))){
+            .fillMaxHeight(0.59f).clip(RoundedCornerShape(bottomStart = 30.dp, bottomEnd = 30.dp))){
             Image(
                 painter = painterResource(id = page.imageRes),
                 contentDescription = null,

@@ -98,11 +98,11 @@ fun ReservationConfirmedDialog(
                                 .fillMaxWidth()
                                 .padding(10.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.spacedBy(16.dp)
+                            verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
                             // Icon (you can replace with your actual icon resource)
 
-
+                            Spacer(Modifier.height(5.dp))
                             Image(
                                 painter = painterResource(id = R.drawable.ic_icons_party_icon),
                                 contentDescription = "Party Icon",
@@ -123,40 +123,42 @@ fun ReservationConfirmedDialog(
                             // Description
                             Text(
                                 text = "Your table has been successfully reserved.",
-                                fontSize = 15.sp,
+                                fontSize = 13.sp,
                                 textAlign = TextAlign.Center,
                                 fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
                                 color = Color.White,
-                                lineHeight = 22.sp
+                                lineHeight = 5.sp
                             )
 
                             Text(
                                 text = "Table ID - #A21",
-                                fontSize = 15.sp,
+                                fontSize = 13.sp,
                                 textAlign = TextAlign.Center,
                                 style = TextStyle(
                                  brush = gradientBrush
                                 ),
                                 fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
                                 color = Color.White,
-                                lineHeight = 22.sp
+                                lineHeight = 5.sp
                             )
 
                             Text(
                                 text = "See full details in your bookings.",
-                                fontSize = 15.sp,
+                                fontSize = 13.sp,
                                 textAlign = TextAlign.Center,
                                 fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
                                 color = Color.White,
-                                lineHeight = 22.sp
+                                lineHeight = 5.sp
                             )
+
+                            Spacer(Modifier.height(5.dp))
 
 
                             CommonButton(
                                 onClick = { viewButtonClick() },
                                 title = "View Booking",
-                                fontSize = 18.sp,
-                                modifier = Modifier.width(161.dp).height(46.dp)
+                                fontSize = 14.sp,
+                                modifier = Modifier.width(141.dp).height(44.dp)
                             )
                             Spacer(Modifier.height(2.dp))
                         }

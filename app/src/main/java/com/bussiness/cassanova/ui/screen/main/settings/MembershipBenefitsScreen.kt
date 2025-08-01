@@ -59,7 +59,7 @@ fun MembershipBenefitsScreen(navController: NavHostController){
                     )
                 )
 
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 // Food and Beverages Perks Section
                 PerkSection(
@@ -71,7 +71,7 @@ fun MembershipBenefitsScreen(navController: NavHostController){
                     )
                 )
 
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 // Parking Perks Section
                 PerkSection(
@@ -81,7 +81,7 @@ fun MembershipBenefitsScreen(navController: NavHostController){
                     )
                 )
 
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 // Parking Perks Section
                 PerkSection(
@@ -92,7 +92,7 @@ fun MembershipBenefitsScreen(navController: NavHostController){
                     )
                 )
 
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 // Parking Perks Section
                 PerkSection(
@@ -103,7 +103,7 @@ fun MembershipBenefitsScreen(navController: NavHostController){
                     )
                 )
 
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 // Parking Perks Section
                 PerkSection(
@@ -148,15 +148,14 @@ fun PerkSection(
 fun PerkItem(text: String) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 4.dp),
+            .fillMaxWidth(),
         verticalAlignment = Alignment.Top
     ) {
         Text(
             text = "•",
             color = Color.White,
-            fontSize = 13.sp,
-            modifier = Modifier.padding(end = 12.dp, top = 2.dp)
+            fontSize = 7.sp,
+            modifier = Modifier.padding(start = 5.dp ,end = 12.dp, top = 2.dp)
         )
 
         Text(

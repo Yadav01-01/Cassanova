@@ -154,7 +154,7 @@ fun ActionButtons(navController : NavHostController) {
 
         Row(
             modifier = Modifier
-                .weight(1f)
+                .weight(1.001f)
                 .height(36.dp)
                 .border(
                     width = 1.dp,
@@ -178,18 +178,18 @@ fun ActionButtons(navController : NavHostController) {
                 modifier = Modifier.size(18.dp)
             )
 
-            Spacer(modifier = Modifier.width(3.dp))
+            Spacer(modifier = Modifier.width(8.dp))
 
             Text(
                 text = datePicker,
                 color = Color.White,
                 fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
-                fontSize = 14.sp,
+                fontSize = 13.sp,
                 maxLines = 1,
                 //overflow = TextOverflow.Ellipsis
             )
 
-            Spacer(modifier = Modifier.width(2.dp))
+            Spacer(modifier = Modifier.width(8.dp))
 
             Image(
                 painter = painterResource(id = R.drawable.ic_add_icon),
@@ -201,7 +201,7 @@ fun ActionButtons(navController : NavHostController) {
 
         CommonButton(onClick = {navController.navigate(Routes.MEMBERSHIP_BENEFITS_SCREEN) }, title = "Become a Member?", modifier = Modifier
             .weight(1f)
-            .height(36.dp), fontSize = 14.sp, radius = 5.dp)
+            .height(36.dp), fontSize = 13.sp, radius = 5.dp)
 
 
     }
@@ -210,7 +210,7 @@ fun ActionButtons(navController : NavHostController) {
         DatePickerModal(
             onDateSelected = { millis ->
                 millis?.let {
-                    val dateStr = convertMillisToDate(it) // You'll need to implement this
+                    val dateStr = it //convertMillisToDate(it) // You'll need to implement this
                     datePicker = dateStr
 
                 }

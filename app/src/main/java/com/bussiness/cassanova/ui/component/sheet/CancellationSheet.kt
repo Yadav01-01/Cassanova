@@ -167,7 +167,7 @@ fun CancellationReasonSheet(
                             onDismissRequest = { expanded = false },
                             modifier = Modifier
                                 .background(Color.Black)
-                                .fillMaxWidth()
+                                .fillMaxWidth().padding(horizontal = 12.dp)
                                 .border(1.dp, Color.White, RoundedCornerShape(8.dp))
                         ) {
                             reasons.forEachIndexed { index, reason ->

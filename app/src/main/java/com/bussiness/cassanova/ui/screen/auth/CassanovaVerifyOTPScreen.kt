@@ -178,11 +178,14 @@ fun CassanovaVerifyOTPScreen(navController: NavHostController, type: Verificatio
 
             Spacer(modifier = Modifier.height(32.dp))
 
+
+                CassanovaOtpInputField(
+                    otp = otp,
+                    onOtpTextChange = { otp = it }
+                )
+
             // OTP Input Fields
-            CassanovaOtpInputField(
-                otp = otp,
-                onOtpTextChange = { otp = it }
-            )
+
 
             // Error message display
             if (errorMessage.isNotEmpty()) {
@@ -321,7 +324,7 @@ fun CassanovaOtpInputField(
 
         // Visible OTP boxes
         Row(
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalArrangement = Arrangement.spacedBy(20.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             repeat(5) { index ->

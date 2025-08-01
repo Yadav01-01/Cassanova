@@ -51,7 +51,7 @@ fun ContactUsScreen(navController: NavHostController, viewModel: ContactUsViewMo
             .fillMaxSize()
             .background(Color.Black)
     ) {
-        SettingHeader(title = "Help, Support & Feedback", onBackClick = {
+        SettingHeader(title = "Contact Us", onBackClick = {
             navController.popBackStack()
         })
 

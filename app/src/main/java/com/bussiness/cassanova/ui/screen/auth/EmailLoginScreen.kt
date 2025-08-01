@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.isImeVisible
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
@@ -79,185 +80,175 @@ fun EmailLoginScreen(navController: NavController = rememberNavController()) {
             .fillMaxSize()
 
     ) {
-Column (Modifier
-    .fillMaxSize()){
-        StatusBarPending()
         Column(
-            modifier = Modifier
+            Modifier
                 .fillMaxSize()
-                .background(Color.Black)
-                .padding(horizontal = 20.dp)
-
         ) {
-
-
-
+            StatusBarPending()
             Column(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .fillMaxSize()
+                    .background(Color.Black)
+                    .padding(horizontal = 20.dp)
+
             ) {
 
-                Spacer(modifier = Modifier.height(90.dp))
 
-                // Logo Section
-                Image(
-                    painter = painterResource(id = R.drawable.ic_cassanova_logo),
+                Column(
                     modifier = Modifier
-                        .width(200.dp)
-                        .height(143.dp),
-                    contentDescription = ""
-                )
+                        .fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
 
-            }
+                    Spacer(modifier = Modifier.height(90.dp))
 
-            Spacer(modifier = Modifier.height(50.dp))
+                    // Logo Section
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_cassanova_logo),
+                        modifier = Modifier
+                            .width(200.dp)
+                            .height(143.dp),
+                        contentDescription = ""
+                    )
 
-            // Title
-            Text(
-                text = stringResource(R.string.lets_get_you_in),
-                style = TextStyle(
-                    fontSize = 30.sp,
-                    fontFamily = FontFamily(Font(R.font.urbanist_bold)),
-                    color = Color.White
-                )
-            )
+                }
 
-            Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(50.dp))
 
-            // Subtitle
-            Text(
-                text = stringResource(R.string.enter_email),
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
-                    color = Color(0xFFAAAAAA),
-                    //textAlign = TextAlign.Center
-                )
-            )
-
-            Spacer(modifier = Modifier.height(30.dp))
-
-            // Phone Input Section
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-
-
-
-                Spacer(modifier = Modifier.width(12.dp))
-
-                OutlinedTextField(
-                    value = email,
-                    onValueChange = {
-                        email = it
-                        if (showError) {
-                            isEmailValid = validateEmail(it)
-                            showError = !isEmailValid
-                        }
-                    },
-                    modifier = Modifier.weight(1f),
-                    leadingIcon = {
-//
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_email_icon_white),
-                            contentDescription = "Email icon",
-
-                            modifier = Modifier
-                                .height(16.dp)
-                                .width(20.dp)
-                        )
-                    },
-                    placeholder = {
-                        Text(
-                            text = stringResource(R.string.email_id),
-                            color = Color(0xFF808080),
-                            fontSize = 14.sp,
-                            fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
-                        )
-                    },
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = if (showError && !isEmailValid) Color.Red else Color(
-                            0xFFD4AF37
-                        ),
-                        unfocusedBorderColor = if (showError && !isEmailValid) Color.Red else Color.Gray,
-                        focusedTextColor = Color.White,
-                        unfocusedTextColor = Color(0xFF808080),
-                        cursorColor = Color(0xFFD4AF37)
-                    ),
-                    keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Email,  // This sets the email keyboard type
-                        autoCorrect = false,),
-                    singleLine = true,
-                    isError = showError && !isEmailValid,
-                    shape = RoundedCornerShape(10.dp)
-                )
-            }
-
-            // Error Message
-            if (showError && !isEmailValid) {
+                // Title
                 Text(
-                    text = ErrorMessages.enterValidEmail,
-                    color = Color.Red,
-                    fontSize = 12.sp,
+                    text = stringResource(R.string.lets_get_you_in),
+                    style = TextStyle(
+                        fontSize = 30.sp,
+                        fontFamily = FontFamily(Font(R.font.urbanist_bold)),
+                        color = Color.White
+                    )
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                // Subtitle
+                Text(
+                    text = stringResource(R.string.enter_email),
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
+                        color = Color(0xFFAAAAAA),
+                        //textAlign = TextAlign.Center
+                    )
+                )
+
+                Spacer(modifier = Modifier.height(30.dp))
+
+                // Phone Input Section
+                Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 8.dp, start = 4.dp)
-                )
-            }
-
-            Spacer(modifier = Modifier.height(32.dp))
-
-
-            CommonButton(title = stringResource(R.string.send_code), onClick = {
-               onSendCodeClick()
-
-            })
-
-            Spacer(modifier = Modifier.height(50.dp))
-
-            // Continue with Email
-            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                Row(
-                    modifier = Modifier.clickable {
-                        // Handle email login
-                        println("Continue with email clicked")
-                        navController.navigate(Routes.PHONE_NUMBER_LOGIN_SCREEN)
-                    },
+                        .height(56.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
 
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_email_icon),
-                        contentDescription = "",
-                        modifier = Modifier.size(24.dp)
-                    )
 
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = stringResource(R.string.continue_with_phone),
-                        color = Color.White,
-                        fontSize = 18.sp,
-                        fontFamily = FontFamily(Font(R.font.urbanist_semibold))
+                    OutlinedTextField(
+                        value = email,
+                        onValueChange = {
+                            email = it
+                            if (showError) {
+                                isEmailValid = validateEmail(it)
+                                showError = !isEmailValid
+                            }
+                        },
+                        modifier = Modifier.weight(1f),
+                        leadingIcon = {
+//
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_email_icon_white),
+                                contentDescription = "Email icon",
+
+                                modifier = Modifier
+                                    .height(24.dp)
+                                    .width(24.dp)
+                            )
+                        },
+                        placeholder = {
+                            Text(
+                                text = stringResource(R.string.email_id),
+                                color = Color(0xFF808080),
+                                fontSize = 14.sp,
+                                fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
+                            )
+                        },
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = if (showError && !isEmailValid) Color.Red else Color(
+                                0xFFD4AF37
+                            ),
+                            unfocusedBorderColor = if (showError && !isEmailValid) Color.Red else Color.Gray,
+                            focusedTextColor = Color.White,
+                            unfocusedTextColor = Color(0xFF808080),
+                            cursorColor = Color(0xFFD4AF37)
+                        ),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Email,  // This sets the email keyboard type
+                            autoCorrect = false,
+                        ),
+                        singleLine = true,
+                        isError = showError && !isEmailValid,
+                        shape = RoundedCornerShape(10.dp)
                     )
+                }
+
+                // Error Message
+                if (showError && !isEmailValid) {
+                    Text(
+                        text = ErrorMessages.enterValidEmail,
+                        color = Color.Red,
+                        fontSize = 12.sp,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp, start = 4.dp)
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(32.dp))
+
+
+                CommonButton(title = stringResource(R.string.send_code), onClick = {
+                    onSendCodeClick()
+
+                })
+
+                Spacer(modifier = Modifier.height(50.dp))
+
+                // Continue with Email
+                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    Row(
+                        modifier = Modifier.clickable {
+                            // Handle email login
+                            println("Continue with email clicked")
+                            navController.navigate(Routes.PHONE_NUMBER_LOGIN_SCREEN)
+                        },
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_round_phone),
+                            contentDescription = "",
+                            modifier = Modifier.size(24.dp)
+                        )
+
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = stringResource(R.string.continue_with_phone),
+                            color = Color.White,
+                            fontSize = 18.sp,
+                            fontFamily = FontFamily(Font(R.font.urbanist_semibold))
+                        )
+                    }
                 }
             }
         }
-}
 
-        androidx.compose.material3.Icon(
-            painter = painterResource(id = R.drawable.ic_back_icon),
-            contentDescription = "Back",
-            tint = Color(0xFFC09D46),
-            modifier = Modifier
-                .align(Alignment.TopStart)
-                .padding(20.dp, top= statusBarPadding.calculateTopPadding() + 20.dp)
-                .size(24.dp)
-                .clickable { navController.popBackStack() }
 
-        )
     }
 
 }

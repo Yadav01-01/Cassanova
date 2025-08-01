@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -251,6 +252,14 @@ fun PhoneNumberLoginScreen(navController: NavController = rememberNavController(
                                 showError = !isPhoneValid
                             }
                         }
+                    },
+                    trailingIcon = {
+                        if (phoneNumber.length == 10 && phoneNumber.all { char -> char.isDigit() }) {
+                            Image(painter = painterResource(R.drawable.ic_check_icon),
+                                contentDescription = "",
+                                modifier = Modifier.size(24.dp))
+                        }
+
                     },
                     modifier = Modifier.weight(1f),
                     placeholder = {
