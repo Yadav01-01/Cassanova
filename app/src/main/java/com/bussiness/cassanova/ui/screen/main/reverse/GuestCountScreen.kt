@@ -77,7 +77,10 @@ fun GuestCountScreen(navController: NavHostController) {
     )
 
     Column(Modifier.fillMaxSize().background(Color.Black)) {
-        ReverseTableHeader("Reserve a Table")
+        ReverseTableHeader("Reserve a Table",onNotificationClick ={navController.navigate(Routes.NOTIFICATION_SCREEN)},
+            onSettingClick = {
+                navController.navigate(Routes.SETTING_SCREEN)
+            })
 
         Column(Modifier.fillMaxSize().padding(start = 20.dp, end = 20.dp, top = 20.dp).verticalScroll(rememberScrollState())) {
             Text(

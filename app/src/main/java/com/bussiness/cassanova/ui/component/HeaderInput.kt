@@ -84,7 +84,7 @@ fun LogoComponent() {
 }
 
 @Composable
-fun ReverseTableHeader(title: String){
+fun ReverseTableHeader(title: String,onNotificationClick: () -> Unit,onSettingClick: () -> Unit){
     Column(modifier = Modifier.fillMaxWidth()
         .background(Color.Black)
         ,) {
@@ -109,10 +109,10 @@ fun ReverseTableHeader(title: String){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 SettingsIcon(onSettingClick = {
-
+                    onSettingClick()
                 })
                 NotificationIcon(onNotificationClick = {
-
+                    onNotificationClick()
                 })
             }
         }
@@ -210,14 +210,11 @@ fun SettingHeader(title: String, onBackClick: () -> Unit) {
                 modifier = Modifier.weight(1f).fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_back_icon),
-                    contentDescription = "back",
-                    tint = TextWhite,
-                    modifier = Modifier
+
+                Image( painter = painterResource(R.drawable.ic_back_icon_2),
+                    contentDescription = "back", modifier = Modifier
                         .clickable { onBackClick() }
-                        .wrapContentSize()
-                )
+                        .wrapContentSize())
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
                     text = title,
@@ -238,7 +235,7 @@ fun SettingHeader(title: String, onBackClick: () -> Unit) {
 
 
 @Composable
-fun SummaryHeader(title: String, onBackClick: () -> Unit) {
+fun SummaryHeader(title: String, onBackClick: () -> Unit,onNotificationClick: () -> Unit,onSettingClick: () -> Unit) {
     Column(modifier = Modifier.background(Color.Black)) {
 
         Row(
@@ -271,11 +268,12 @@ fun SummaryHeader(title: String, onBackClick: () -> Unit) {
 
             Row {
                 SettingsIcon(onSettingClick = {
-
+                    onSettingClick()
                 })
                 Spacer(Modifier.width(10.dp))
-                NotificationIcon(onNotificationClick = {
 
+                NotificationIcon(onNotificationClick = {
+                    onNotificationClick()
                 })
             }
         }

@@ -58,7 +58,9 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.ui.component.CommonButton
+import com.bussiness.cassanova.ui.component.DatePickerModal
 import com.bussiness.cassanova.ui.component.SettingHeader
+import com.bussiness.cassanova.ui.component.convertMillisToDate
 import java.io.File
 
 @Composable
@@ -66,7 +68,7 @@ fun ProfileScreen(navController: NavHostController) {
     var name by remember { mutableStateOf("Sarah Jonson") }
     var email by remember { mutableStateOf("sarah.jonson@example.com") }
     var phone by remember { mutableStateOf("+1 (XXX) XXX-XXXX") }
-    var location by remember { mutableStateOf("01-14-1997") }
+    var dob by remember { mutableStateOf("01-14-1997") }
     var clickedEdit by remember { mutableStateOf(false) }
     var profileImageUri by remember { mutableStateOf<Uri?>(null) }
     var showImagePickerDialog by remember { mutableStateOf(false) }
@@ -196,9 +198,9 @@ fun ProfileScreen(navController: NavHostController) {
             Spacer(Modifier.height(16.dp))
 
             ProfileInfoItem(
-                label = "Location",
-                value = location,
-                onValueChange = { location = it },
+                label = "dob",
+                value = dob,
+                onValueChange = { dob = it },
                 icon = painterResource(id = R.drawable.ic_cake_icon),
                 isEditable = clickedEdit
             )
@@ -276,6 +278,7 @@ fun ProfileImageWithCamera(
     }
 }
 
+
 @Composable
 fun ProfileInfoItem(
     label: String,
@@ -285,6 +288,22 @@ fun ProfileInfoItem(
     modifier: Modifier = Modifier,
     isEditable: Boolean = false
 ) {
+    var showDatePicker by remember { mutableStateOf(false) }
+
+    // Only show date picker for dob field when editable
+    if (label == "dob" && isEditable && showDatePicker) {
+        DatePickerModal(
+            onDateSelected = { millis ->
+                millis?.let {
+                    val dateStr = convertMillisToDate(it) // You'll need to implement this
+                    onValueChange(dateStr)
+                }
+                showDatePicker = false
+            },
+            onDismiss = { showDatePicker = false }
+        )
+    }
+
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -295,6 +314,11 @@ fun ProfileInfoItem(
                 shape = RoundedCornerShape(10.dp)
             )
             .padding(horizontal = 16.dp, vertical = 10.dp)
+            .clickable(enabled = isEditable && label == "dob") {
+                if (label == "dob" && isEditable) {
+                    showDatePicker = true
+                }
+            }
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -311,19 +335,29 @@ fun ProfileInfoItem(
 
             Spacer(modifier = Modifier.width(10.dp))
 
-            // Text Field
-            BasicTextField(
-                value = value,
-                onValueChange = { if (isEditable) onValueChange(it) },
-                enabled = isEditable,
-                textStyle = TextStyle(
+            // Text Field - For dob, we'll make it non-editable via keyboard
+            if (label == "dob") {
+                Text(
+                    text = value,
                     color = if (isEditable) Color.White else Color.White,
                     fontSize = 14.sp,
-                    fontFamily = FontFamily(Font(R.font.urbanist_medium))
-                ),
-                cursorBrush = SolidColor(Color(0xFFD4AF37)),
-                modifier = Modifier.weight(1f)
-            )
+                    fontFamily = FontFamily(Font(R.font.urbanist_medium)),
+                    modifier = Modifier.weight(1f)
+                )
+            } else {
+                BasicTextField(
+                    value = value,
+                    onValueChange = { if (isEditable) onValueChange(it) },
+                    enabled = isEditable,
+                    textStyle = TextStyle(
+                        color = if (isEditable) Color.White else Color.White,
+                        fontSize = 14.sp,
+                        fontFamily = FontFamily(Font(R.font.urbanist_medium))
+                    ),
+                    cursorBrush = SolidColor(Color(0xFFD4AF37)),
+                    modifier = Modifier.weight(1f)
+                )
+            }
         }
     }
 }
@@ -342,6 +376,8 @@ fun saveBitmapToCache(context: Context, bitmap: Bitmap): Uri {
         file
     )
 }
+
+
 
 @Preview(showBackground = true)
 @Composable

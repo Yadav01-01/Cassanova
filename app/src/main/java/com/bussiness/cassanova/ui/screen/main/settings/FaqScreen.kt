@@ -84,6 +84,26 @@ fun FaqScreen(navController: NavHostController) {
                         id = 5,
                         title = "Lorem Ipsum is simply dummy text.",
                         content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    ),
+                    ExpandableItem(
+                        id = 6,
+                        title = "Lorem Ipsum is simply dummy text.",
+                        content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    ),
+                    ExpandableItem(
+                        id = 6,
+                        title = "Lorem Ipsum is simply dummy text.",
+                        content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    ),
+                    ExpandableItem(
+                        id = 7,
+                        title = "Lorem Ipsum is simply dummy text.",
+                        content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+                    ),
+                    ExpandableItem(
+                        id = 8,
+                        title = "Lorem Ipsum is simply dummy text.",
+                        content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
                     )
                 )
             )
@@ -94,8 +114,7 @@ fun FaqScreen(navController: NavHostController) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 16.dp).
-                verticalScroll(rememberScrollState()),
+                .padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             items(items) { item ->
@@ -184,7 +203,7 @@ fun ExpandableCard(
                 modifier = Modifier.padding(horizontal = 10.dp, vertical = 15.dp )
             )
         }
-
+Spacer(Modifier.height(10.dp))
 }
 }
 

@@ -1,6 +1,11 @@
 package com.bussiness.cassanova.ui.screen.main.home
 
 
+import android.app.Activity
+import android.os.Handler
+import android.os.Looper
+import android.widget.Toast
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -44,7 +49,12 @@ import com.bussiness.cassanova.ui.theme.GoldColor
 import com.bussiness.cassanova.viewModel.HomeViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.getValue
-
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
+import com.bussiness.cassanova.ui.component.DatePickerModal
+import com.bussiness.cassanova.ui.component.convertMillisToDate
 
 
 @Composable
@@ -58,20 +68,20 @@ fun HomeScreen(
     val loyaltyPoints by viewModel.loyaltyPoints.collectAsState()
     val menuItems by viewModel.menuItems.collectAsState()
     val events by viewModel.events.collectAsState()
+    val context = LocalContext.current
+    var backPressedOnce by remember { mutableStateOf(false) }
 
-//    val menuItems = listOf(
-//        MenuItem("Truffle Parmesan...", "Appetizers", "$25",R.drawable.dummy_social_media_post),
-//        MenuItem("Charcoal-Grilled T...", "Main Course", "$35",R.drawable.dummy_baby_pic),
-//        MenuItem("Golden Honey...", "Signature Dish", "$55",R.drawable.dummy_social_media_post)
-//    )
-//
-//    val events = listOf(
-//        EventHomeData(
-//            "VIP Lounge Access",
-//            "From wine tastings to rooftop sessions — only for our elite guests",
-//            "Saturday, 27 May - 10:00 AM"
-//        )
-//    )
+    BackHandler(true) {
+        if (backPressedOnce) {
+            (context as? Activity)?.finishAffinity()
+        } else {
+            backPressedOnce = true
+            Toast.makeText(context, "Press back again to exit", Toast.LENGTH_SHORT).show()
+            Handler(Looper.getMainLooper()).postDelayed({
+                backPressedOnce = false
+            }, 2000)
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -104,20 +114,20 @@ fun HomeScreen(
             )
 
             // Action Buttons
-            ActionButtons()
+            ActionButtons(navController= navController)
 
             Spacer(modifier = Modifier.height(20.dp))
 
             // Menu Section
-            MenuSection(menuItems)
+            MenuSection(navController,menuItems)
             Spacer(modifier = Modifier.height(20.dp))
 
-            EventItem(viewModel)
+            EventItem(navController,viewModel)
 
             Spacer(modifier = Modifier.height(20.dp))
             // Loyalty Points Section
            // LoyaltyPointsSection()
-            LoyaltyPointsSection(points = loyaltyPoints)
+            LoyaltyPointsSection(points = loyaltyPoints,navController = navController)
 
             Spacer(modifier = Modifier.height(32.dp))
         }
@@ -131,7 +141,9 @@ fun HomeScreen(
 
 
 @Composable
-fun ActionButtons() {
+fun ActionButtons(navController : NavHostController) {
+    var showDatePicker by remember { mutableStateOf(false) }
+    var datePicker by remember { mutableStateOf("Add Your DOB") }
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -154,7 +166,9 @@ fun ActionButtons() {
                     // shape = RoundedCornerShape(8.dp)
                 )
                 .clickable { /* Handle click action */ }
-                .padding(horizontal = 12.dp), // Add padding for better spacing
+                .padding(horizontal = 12.dp).clickable{
+                    showDatePicker = true
+                }, // Add padding for better spacing
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
@@ -167,7 +181,7 @@ fun ActionButtons() {
             Spacer(modifier = Modifier.width(3.dp))
 
             Text(
-                text = "Add Your DOB",
+                text = datePicker,
                 color = Color.White,
                 fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
                 fontSize = 14.sp,
@@ -185,11 +199,25 @@ fun ActionButtons() {
         }
 
 
-        CommonButton(onClick = { }, title = "Become a Member?", modifier = Modifier
+        CommonButton(onClick = {navController.navigate(Routes.MEMBERSHIP_BENEFITS_SCREEN) }, title = "Become a Member?", modifier = Modifier
             .weight(1f)
             .height(36.dp), fontSize = 14.sp, radius = 5.dp)
 
 
+    }
+
+    if (showDatePicker) {
+        DatePickerModal(
+            onDateSelected = { millis ->
+                millis?.let {
+                    val dateStr = convertMillisToDate(it) // You'll need to implement this
+                    datePicker = dateStr
+
+                }
+                showDatePicker = false
+            },
+            onDismiss = { showDatePicker = false }
+        )
     }
 }
 

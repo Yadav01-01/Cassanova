@@ -30,6 +30,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.Order
+import com.bussiness.cassanova.navigation.Routes
 import com.bussiness.cassanova.ui.component.LoyaltyPointsBanner
 import com.bussiness.cassanova.ui.component.OrderCard
 import com.bussiness.cassanova.ui.component.ReverseTableHeader
@@ -39,7 +40,14 @@ import com.bussiness.cassanova.ui.component.sheet.PointsPrivilegesBottomSheet
 fun LoyaltyPointsScreen(navController: NavHostController) {
     var showBottomSheet by remember { mutableStateOf(false) }
 
+
+        ReverseTableHeader(title = "My Loyalty Points",onNotificationClick ={navController.navigate(Routes.NOTIFICATION_SCREEN)},
+            onSettingClick = {
+                navController.navigate(Routes.SETTING_SCREEN)
+            })
+
     Box(modifier = Modifier.fillMaxSize()) {
+
 
         // Background content with blur applied conditionally
         Box(
@@ -52,7 +60,10 @@ fun LoyaltyPointsScreen(navController: NavHostController) {
                     .fillMaxSize()
                     .background(Color.Black)
             ) {
-                ReverseTableHeader(title = "My Loyalty Points")
+                ReverseTableHeader(title = "My Loyalty Points",onNotificationClick ={navController.navigate(Routes.NOTIFICATION_SCREEN)},
+                    onSettingClick = {
+                        navController.navigate(Routes.SETTING_SCREEN)
+                    })
 
                 Column(modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 20.dp)) {
 
