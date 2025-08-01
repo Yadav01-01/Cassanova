@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
@@ -52,6 +53,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bussiness.cassanova.R
@@ -222,7 +224,7 @@ fun OrderCard(
     earnedPoints: String,
     modifier: Modifier = Modifier
 ) {
-    Box(modifier = modifier.padding(vertical = 10.dp)) {
+    Box(modifier = modifier.padding(vertical = 15.dp)) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -434,9 +436,10 @@ fun BookingCard(
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Box(
-                        modifier = Modifier.height(25.dp)
+                        modifier = Modifier.wrapContentHeight()
                             .clip(RoundedCornerShape(5.dp))
-                            .background(gradientBrush)
+                            .background(gradientBrush),
+                        contentAlignment = Alignment.Center
                     ) {
                         Text(
                             text = booking.status,
@@ -460,14 +463,16 @@ fun BookingCard(
 
                         DropdownMenu(
                             expanded = menuExpanded,
-                            onDismissRequest = { menuExpanded = false }
+                            onDismissRequest = { menuExpanded = false },
+                            offset = DpOffset(x = (-70).dp, y = 0.dp)
                         ) {
                             DropdownMenuItem(
-                                text = { Text("Cancel") },
+                                text = { Text("Cancel", color = Color.Black, fontSize = 12.sp, fontFamily = FontFamily(Font(R.font.urbanist_medium))) },
                                 onClick = {
                                     menuExpanded = false
                                     onCancelClick()
-                                }
+                                },
+                                modifier = Modifier.height(25.dp).clip(RoundedCornerShape(5.dp)).padding(end =15.dp).width(70.dp)
                             )
                         }
                     }
