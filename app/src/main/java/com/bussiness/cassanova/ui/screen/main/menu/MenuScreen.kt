@@ -56,6 +56,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.MenuListData
+import com.bussiness.cassanova.navigation.Routes
 import com.bussiness.cassanova.ui.component.CommonUnlockButton
 import com.bussiness.cassanova.ui.component.DashedDivider
 import com.bussiness.cassanova.ui.component.ReverseTableHeader
@@ -78,7 +79,10 @@ fun MenuScreen(navController: NavHostController) {
 
     ) {
 
-        ReverseTableHeader(title = "Menu")
+        ReverseTableHeader(title = "Menu",onNotificationClick ={navController.navigate(Routes.NOTIFICATION_SCREEN)},
+            onSettingClick = {
+                navController.navigate(Routes.SETTING_SCREEN)
+            })
 
 
         Column(modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 20.dp)) {

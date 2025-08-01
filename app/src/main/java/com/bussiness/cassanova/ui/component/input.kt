@@ -209,7 +209,7 @@ fun BackButtonWithArrow(
             modifier = Modifier
                 .wrapContentSize()
                 .background(Color.Black)
-                .padding(horizontal = 16.dp, vertical = 16.dp),
+                .padding(horizontal = 16.dp, vertical = 16.dp).clickable { onBackPressed() },
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Back Arrow Icon
@@ -219,7 +219,7 @@ fun BackButtonWithArrow(
                 tint = Color.White,
                 modifier = Modifier
                     .size(24.dp)
-                    .clickable { onBackPressed() }
+
             )
             Spacer(modifier = Modifier.width(12.dp))
             Text(
@@ -431,6 +431,7 @@ fun CommonOutlinedTextField(
             cursorColor = Color(0xFFD4AF37)
         ),
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+
         singleLine = singleLine,
         shape = RoundedCornerShape(10.dp)
     )

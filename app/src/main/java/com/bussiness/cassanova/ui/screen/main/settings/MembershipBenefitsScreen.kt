@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -43,8 +45,9 @@ fun MembershipBenefitsScreen(navController: NavHostController){
 
             Column(
                 modifier = Modifier
-                    .padding(24.dp)
-                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+                    .padding(top = 24.dp)
+                    .fillMaxWidth().verticalScroll(rememberScrollState())
             ) {
                 // Exclusive Access Section
                 PerkSection(
@@ -76,6 +79,40 @@ fun MembershipBenefitsScreen(navController: NavHostController){
                     perks = listOf(
                         "Free valet (if applicable)."
                     )
+                )
+
+                Spacer(modifier = Modifier.height(32.dp))
+
+                // Parking Perks Section
+                PerkSection(
+                    title = "Referral Benefits",
+                    perks = listOf(
+                        "For each referral, you will receive 25$ gift card (referral has to be a member for 60 days).",
+                                "Custom members card."
+                    )
+                )
+
+                Spacer(modifier = Modifier.height(32.dp))
+
+                // Parking Perks Section
+                PerkSection(
+                    title = "Hookah Perks",
+                    perks = listOf(
+                        "1 free hookah a month (specially flavors does not apply).",
+                        "Build your own Special Flavor that only you can smoke/purchase."
+                    )
+                )
+
+                Spacer(modifier = Modifier.height(32.dp))
+
+                // Parking Perks Section
+                PerkSection(
+                    title = "Recognition",
+                    perks = listOf(
+                        "Members will have a custom specific hookah that acknowledge you’re a member.",
+                        "Free Entry.",
+                        "1 Buddy Pass (1 pass a month)."
+                        )
                 )
             }
 
@@ -118,14 +155,14 @@ fun PerkItem(text: String) {
         Text(
             text = "•",
             color = Color.White,
-            fontSize = 16.sp,
+            fontSize = 13.sp,
             modifier = Modifier.padding(end = 12.dp, top = 2.dp)
         )
 
         Text(
             text = text,
             color = Color.White,
-            fontFamily = FontFamily(Font(R.font.urbanist_semibold)),
+            fontFamily = FontFamily(Font(R.font.urbanist_regular)),
             fontSize = 14.sp,
             lineHeight = 22.sp,
             modifier = Modifier.weight(1f)

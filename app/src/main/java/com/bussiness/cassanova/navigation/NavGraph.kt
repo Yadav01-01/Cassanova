@@ -1,5 +1,7 @@
 package com.bussiness.cassanova.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -20,6 +22,7 @@ import com.bussiness.cassanova.ui.screen.auth.NotificationPermissionScreen
 import com.bussiness.cassanova.ui.screen.auth.PhoneNumberLoginScreen
 import com.bussiness.cassanova.ui.screen.main.MainScreen
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun NavGraph(navController: NavHostController) {
     Box(
@@ -40,8 +43,9 @@ fun NavGraph(navController: NavHostController) {
                 })
             }
             composable(Routes.ONBOARDING) {
-                OnboardingScreen(navController, onFinish = { /* TODO: handle finish */ })
+                OnboardingScreen(navController, onFinish = { navController.navigate(Routes.PHONE_NUMBER_LOGIN_SCREEN) })
             }
+
             composable(Routes.PHONE_NUMBER_LOGIN_SCREEN) { PhoneNumberLoginScreen(navController) }
             composable(Routes.EMAIL_LOGIN_SCREEN) { EmailLoginScreen(navController) }
             composable(Routes.MAIN_SCREEN) { MainScreen(navController) }

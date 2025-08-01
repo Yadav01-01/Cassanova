@@ -29,6 +29,7 @@ object Routes {
     const val TERM_SCREEN = "TermsConditionsScreen"
     const val PRIVACY_SCREEN = "PrivacyPolicyScreen"
     const val CONTACT_US_SCREEN = "ContactUsScreen"
+    const val MEMBERSHIP_BENEFITS_SCREEN = "MembershipBenefitsScreen"
 
 
 }

@@ -41,15 +41,19 @@ fun MainScreen(authNavController: NavHostController) {
                 selectedRoute = currentRoute,
                 onItemClick = { navItem ->
                     navController.navigate(navItem.route) {
-                        popUpTo(navController.graph.startDestinationId) { saveState = true }
+                        popUpTo(0) { inclusive = true }
                         launchSingleTop = true
-                        restoreState = true
                     }
+//                    navController.navigate(navItem.route) {
+//                        popUpTo(navController.graph.startDestinationId) { saveState = true }
+//                        launchSingleTop = true
+//                        restoreState = true
+//                    }
                 }
             )
         }
     ){ innerPadding ->
-        MainNavGraph(navController = navController, modifier = Modifier.padding(innerPadding))
+        MainNavGraph(authNavController= authNavController,navController = navController, modifier = Modifier.padding(innerPadding))
     }
 }
 

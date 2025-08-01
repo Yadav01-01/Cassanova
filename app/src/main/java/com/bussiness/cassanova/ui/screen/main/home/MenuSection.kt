@@ -34,8 +34,11 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.MenuItem
+import com.bussiness.cassanova.navigation.Routes
 import com.bussiness.cassanova.ui.component.dialog.DeleteAccountDialog
 import com.bussiness.cassanova.ui.component.dialog.MenuItemDetailDialog
 import com.bussiness.cassanova.ui.theme.DarkCard
@@ -44,7 +47,7 @@ import com.bussiness.cassanova.ui.theme.TextAAColor
 import com.bussiness.cassanova.ui.theme.gradientBrush
 
 @Composable
-fun MenuSection(menuItems: List<MenuItem>) {
+fun MenuSection(navController: NavHostController,menuItems: List<MenuItem>) {
     Column(
         modifier = Modifier
     ) {
@@ -71,7 +74,7 @@ fun MenuSection(menuItems: List<MenuItem>) {
                     painter = painterResource(id = R.drawable.next_arrow_button),
                     contentDescription = "View all",
                     modifier = Modifier.size(25.dp).clickable {
-
+navController.navigate(Routes.MENU_SCREEN)
                     })
             }
 

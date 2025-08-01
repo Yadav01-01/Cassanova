@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -64,7 +65,10 @@ fun AvailableTimeSlotsScreen(navController: NavHostController) {
     var selectedSlot by remember { mutableStateOf<String?>(null) }
     var sold by remember { mutableStateOf<String?>(null) }
     Column(Modifier.fillMaxSize().background(Color.Black)) {
-        ReverseTableHeader("Reserve a Table")
+        ReverseTableHeader("Reserve a Table",onNotificationClick ={navController.navigate(Routes.NOTIFICATION_SCREEN)},
+            onSettingClick = {
+                navController.navigate(Routes.SETTING_SCREEN)
+            })
         Column(Modifier.fillMaxSize().padding(start = 20.dp, end = 20.dp, top = 20.dp).verticalScroll(rememberScrollState())) {
 
             Text(
@@ -91,6 +95,7 @@ fun AvailableTimeSlotsScreen(navController: NavHostController) {
                     .nestedScroll(gridScrollConnection)
             ) {
             LazyVerticalGrid(
+               // modifier = Modifier.wrapContentSize(),
                 modifier = Modifier.nestedScroll(gridScrollConnection),
                 columns = GridCells.Fixed(3),
                 contentPadding = PaddingValues(0.dp),

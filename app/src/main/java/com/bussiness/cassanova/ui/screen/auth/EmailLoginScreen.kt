@@ -56,18 +56,20 @@ fun EmailLoginScreen(navController: NavController = rememberNavController()) {
     var email by rememberSaveable { mutableStateOf("") }
     val statusBarPadding = WindowInsets.statusBars.asPaddingValues()
 
-    fun validatePhoneNumber(phone: String): Boolean {
-        return phone.length == 10 && phone.all { it.isDigit() }
+    fun validateEmail(email: String): Boolean {
+        val emailRegex = Regex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\$")
+        return emailRegex.matches(email)
     }
 
     fun onSendCodeClick() {
-        val isValid = validatePhoneNumber(email)
+        val isValid = validateEmail(email)
         isEmailValid = isValid
         showError = !isValid
 
         if (isValid) {
             // Handle send code logic here
-            println("Sending code to: +1$email")
+            println("Sending code to email: $email")
+            navController.navigate("${Routes.VERIFY_OTP_SCREEN}/${VerificationType.EMAIL.name}")
         }
     }
 
@@ -143,22 +145,7 @@ Column (Modifier
                     .height(56.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Country Code Picker
-//                Box(
-//                    modifier = Modifier
-//                        .border(
-//                            1.dp,
-//                            if (showError && !isEmailValid) Color.Red else Color.Gray,
-//                            RoundedCornerShape(8.dp)
-//                        )
-//                        .background(
-//                            Color.Transparent,
-//                            RoundedCornerShape(8.dp)
-//                        )
-//                ) {
-//
-//
-//                }
+
 
 
                 Spacer(modifier = Modifier.width(12.dp))
@@ -166,12 +153,10 @@ Column (Modifier
                 OutlinedTextField(
                     value = email,
                     onValueChange = {
-                        if (it.length <= 10 && it.all { char -> char.isDigit() }) {
-                            email = it
-                            if (showError) {
-                                isEmailValid = validatePhoneNumber(it)
-                                showError = !isEmailValid
-                            }
+                        email = it
+                        if (showError) {
+                            isEmailValid = validateEmail(it)
+                            showError = !isEmailValid
                         }
                     },
                     modifier = Modifier.weight(1f),
@@ -203,7 +188,8 @@ Column (Modifier
                         unfocusedTextColor = Color(0xFF808080),
                         cursorColor = Color(0xFFD4AF37)
                     ),
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+                    keyboardOptions = KeyboardOptions( keyboardType = KeyboardType.Email,  // This sets the email keyboard type
+                        autoCorrect = false,),
                     singleLine = true,
                     isError = showError && !isEmailValid,
                     shape = RoundedCornerShape(10.dp)
@@ -213,7 +199,7 @@ Column (Modifier
             // Error Message
             if (showError && !isEmailValid) {
                 Text(
-                    text = ErrorMessages.enterValidNumber,
+                    text = ErrorMessages.enterValidEmail,
                     color = Color.Red,
                     fontSize = 12.sp,
                     modifier = Modifier
@@ -226,8 +212,8 @@ Column (Modifier
 
 
             CommonButton(title = stringResource(R.string.send_code), onClick = {
-               // onSendCodeClick()
-                navController.navigate("${Routes.VERIFY_OTP_SCREEN}/${VerificationType.EMAIL.name}")
+               onSendCodeClick()
+
             })
 
             Spacer(modifier = Modifier.height(50.dp))

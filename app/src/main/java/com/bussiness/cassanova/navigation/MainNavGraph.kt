@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,6 +21,7 @@ import com.bussiness.cassanova.ui.screen.main.settings.AboutUsScreen
 import com.bussiness.cassanova.ui.screen.main.settings.ContactUsScreen
 import com.bussiness.cassanova.ui.screen.main.settings.EventsExperiencesScreen
 import com.bussiness.cassanova.ui.screen.main.settings.FaqScreen
+import com.bussiness.cassanova.ui.screen.main.settings.MembershipBenefitsScreen
 import com.bussiness.cassanova.ui.screen.main.settings.NotificationScreen
 import com.bussiness.cassanova.ui.screen.main.settings.PrivacyPolicyScreen
 import com.bussiness.cassanova.ui.screen.main.settings.ProfileScreen
@@ -30,7 +32,7 @@ import com.bussiness.cassanova.ui.screen.main.settings.TermsConditionsScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun MainNavGraph(
+fun MainNavGraph(authNavController: NavController,
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
@@ -47,7 +49,7 @@ fun MainNavGraph(
         composable(Routes.AVAILABLE_TIME_SLOT_SCREEN) { AvailableTimeSlotsScreen(navController) }
         composable(Routes.GUEST_COUNT_SCREEN) { GuestCountScreen(navController) }
         composable(Routes.RESERVATION_SUMMARY_SCREEN) { ReservationSummaryScreen(navController) }
-        composable(Routes.SETTING_SCREEN) { SettingScreen(navController) }
+        composable(Routes.SETTING_SCREEN) { SettingScreen(authNavController,navController) }
         composable(Routes.NOTIFICATION_SCREEN) { NotificationScreen(navController) }
         composable(Routes.PROFILE_SCREEN) { ProfileScreen(navController) }
         composable(Routes.FAQ_SCREEN) { FaqScreen(navController) }
@@ -56,6 +58,7 @@ fun MainNavGraph(
         composable(Routes.TERM_SCREEN) { TermsConditionsScreen(navController) }
         composable(Routes.PRIVACY_SCREEN) { PrivacyPolicyScreen(navController) }
         composable(Routes.CONTACT_US_SCREEN) { ContactUsScreen(navController) }
+        composable(Routes.MEMBERSHIP_BENEFITS_SCREEN) { MembershipBenefitsScreen(navController) }
 
     }
 }

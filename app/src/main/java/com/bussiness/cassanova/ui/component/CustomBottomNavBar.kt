@@ -2,6 +2,7 @@ package com.bussiness.cassanova.ui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -46,7 +47,6 @@ val bottomNavItems = listOf(
     BottomNavItem("Bookings", R.drawable.ic_bookings_icon, Routes.BOOKINGS_SCREEN)
 )
 
-
 @Composable
 fun CustomBottomBar(
     navController: NavController,
@@ -54,68 +54,80 @@ fun CustomBottomBar(
     selectedRoute: String,
     onItemClick: (BottomNavItem) -> Unit
 ) {
-
-    Column ( modifier = Modifier.background(Color.Black)){
-    Box(
-        modifier = Modifier
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFFC7A65E),
-                        Color(0xFFFBE29A),
-                        Color(0xFFBE9B43)
-                    )
-                ),
-                shape = RoundedCornerShape(topEnd = 20.dp, topStart = 20.dp)
-            ),
-        contentAlignment = Alignment.Center
-    ) {
-        Row(
+    Column(modifier = Modifier.background(Color.Black)) {
+        Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 6.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            Color(0xFFC7A65E),
+                            Color(0xFFFBE29A),
+                            Color(0xFFBE9B43)
+                        )
+                    ),
+                    shape = RoundedCornerShape(topEnd = 20.dp, topStart = 20.dp)
+                ),
+            contentAlignment = Alignment.Center
         ) {
-            items.forEach { item ->
-                val selected = item.route == selectedRoute
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 6.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                items.forEach { item ->
+                    val selected = item.route == selectedRoute
+                    val interactionSource = remember { MutableInteractionSource() }
 
-                Column(
-                    modifier = Modifier
-                        .weight(1f) // Evenly distribute based on screen width
-                        .clickable { onItemClick(item) },
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Box(
+                    Column(
                         modifier = Modifier
-                            .size(40.dp)
-                            .clip(RoundedCornerShape(8.dp))
-                            .background(
-                                if (selected) Color.Transparent else Color.Transparent
+                            .weight(1f)
+                            .clickable(
+                                interactionSource = interactionSource,
+                                indication = null, // This removes the ripple effect
+                                onClick = { onItemClick(item) }
                             ),
-                        contentAlignment = Alignment.Center
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Icon(
-                            painter = painterResource(id = item.icon),
-                            contentDescription = item.label,
-                            tint = if (selected) Color(0xFF796C48) else Color.Black,
-                            modifier = Modifier.size(25.dp)
+                        // Icon with clickable modifier
+                        Box(
+                            modifier = Modifier
+                                .size(40.dp)
+                                .clip(RoundedCornerShape(8.dp))
+                                .clickable(
+                                    interactionSource = interactionSource,
+                                    indication = null,
+                                    onClick = { onItemClick(item) }
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                painter = painterResource(id = item.icon),
+                                contentDescription = item.label,
+                                tint = if (selected) Color(0xFF796C48) else Color.Black,
+                                modifier = Modifier.size(25.dp)
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(3.dp))
+
+                        // Text with clickable modifier
+                        Text(
+                            text = item.label,
+                            color = if (selected) Color(0xFF796C48) else Color.Black,
+                            fontSize = 12.sp,
+                            fontFamily = FontFamily(Font(R.font.urbanist_medium)),
+                            maxLines = 1,
+                            modifier = Modifier.clickable(
+                                interactionSource = interactionSource,
+                                indication = null,
+                                onClick = { onItemClick(item) }
+                            )
                         )
                     }
-
-                    Spacer(modifier = Modifier.height(3.dp))
-
-                    Text(
-                        text = item.label,
-                        color = if (selected) Color(0xFF796C48) else Color.Black,
-                        fontSize = 12.sp,
-                        fontFamily = FontFamily(Font(R.font.urbanist_medium)),
-                        maxLines = 1
-                    )
                 }
             }
         }
-
-    }
     }
 }
 

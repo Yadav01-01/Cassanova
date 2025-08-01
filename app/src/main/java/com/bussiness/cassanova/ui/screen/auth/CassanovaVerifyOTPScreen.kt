@@ -219,15 +219,26 @@ fun CassanovaVerifyOTPScreen(navController: NavHostController, type: Verificatio
                     fontFamily = FontFamily(Font(R.font.urbanist_medium)),
                     color = Color(0xFFAAAAAA)
                 )
-                Text(
-                    text = "RESEND",
-                    modifier = Modifier.clickable {
-                        timeLeft = 59
-                    },
-                    fontSize = 15.sp,
-                    fontFamily = FontFamily(Font(R.font.urbanist_bold)),
-                    color = Color(0xFFFFFFFF)
-                )
+                if (timeLeft > 0) {
+                    // When timer is running - grey and not clickable
+                    Text(
+                        text = "RESEND",
+                        fontSize = 15.sp,
+                        fontFamily = FontFamily(Font(R.font.urbanist_bold)),
+                        color = Color(0xFFAAAAAA) // Grey color
+                    )
+                } else {
+                    // When timer is finished - white and clickable
+                    Text(
+                        text = "RESEND",
+                        modifier = Modifier.clickable {
+                            timeLeft = 59 // Reset timer when clicked
+                        },
+                        fontSize = 15.sp,
+                        fontFamily = FontFamily(Font(R.font.urbanist_bold)),
+                        color = Color(0xFFFFFFFF) // White color
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -339,7 +350,7 @@ fun CassanovaOtpInputField(
                         text = if (index < otp.length) otp[index].toString() else "",
                         style = TextStyle(
                             fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily(Font(R.font.urbanist_medium)),
                             color = Color.White
                         )
                     )

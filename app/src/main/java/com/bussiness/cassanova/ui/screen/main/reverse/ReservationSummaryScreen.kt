@@ -96,7 +96,10 @@ fun ReservationSummaryScreen(navController: NavHostController) {
 
         SummaryHeader(title = "Summary", onBackClick = {
             navController.popBackStack()
-        })
+        },onNotificationClick ={navController.navigate(Routes.NOTIFICATION_SCREEN)},
+            onSettingClick = {
+                navController.navigate(Routes.SETTING_SCREEN)
+            })
 
 
         Column(modifier = Modifier.padding(start = 30.dp, end = 30.dp, top = 30.dp)) {
@@ -165,7 +168,9 @@ onClick = {showSlotTimeDialog = true}
         })
     }
     if(showReservationConfirmedDialog){
-        ReservationConfirmedDialog(onDismiss={showReservationConfirmedDialog = false}, viewButtonClick = {showReservationConfirmedDialog = false})
+        ReservationConfirmedDialog(onDismiss={showReservationConfirmedDialog = false}, viewButtonClick = {showReservationConfirmedDialog = false
+        navController.navigate(Routes.BOOKINGS_SCREEN)
+        })
     }
 }
 

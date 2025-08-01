@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -21,6 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -78,7 +80,8 @@ fun ContactUsScreen(navController: NavHostController, viewModel: ContactUsViewMo
                 onValueChange = { viewModel.updateName(it) },
                 hintText = "Enter your name",
                 leadingIconResId = R.drawable.name_ic,
-                modifier = Modifier.fillMaxWidth().height(52.dp)
+                modifier = Modifier.fillMaxWidth().height(52.dp),
+                keyboardType= KeyboardType.Text
             )
 
             Spacer(Modifier.height(20.dp))
@@ -88,7 +91,8 @@ fun ContactUsScreen(navController: NavHostController, viewModel: ContactUsViewMo
                 onValueChange = { viewModel.updatePhone(it) },
                 hintText = "+1 (XXX) XXX-XXXX",
                 leadingIconResId = R.drawable.call_ic,
-                modifier = Modifier.fillMaxWidth().height(52.dp)
+                modifier = Modifier.fillMaxWidth().height(52.dp),
+                keyboardType= KeyboardType.Phone
             )
             Spacer(Modifier.height(20.dp))
             CommonOutlinedTextField(
@@ -96,7 +100,8 @@ fun ContactUsScreen(navController: NavHostController, viewModel: ContactUsViewMo
                 onValueChange = { viewModel.updateEmail(it) },
                 hintText = "Email ID",
                 leadingIconResId = R.drawable.email_ic,
-                modifier = Modifier.fillMaxWidth().height(52.dp)
+                modifier = Modifier.fillMaxWidth().height(52.dp),
+                keyboardType= KeyboardType.Email
             )
             Spacer(Modifier.height(20.dp))
             CommonOutlinedTextField(
@@ -104,7 +109,8 @@ fun ContactUsScreen(navController: NavHostController, viewModel: ContactUsViewMo
                 onValueChange = { viewModel.updateSubject(it) },
                 hintText = "Subject",
                 leadingIconResId = R.drawable.subject_ic,
-                modifier = Modifier.fillMaxWidth().height(52.dp)
+                modifier = Modifier.fillMaxWidth().height(52.dp),
+                keyboardType= KeyboardType.Text
             )
             Spacer(Modifier.height(20.dp))
             InputField(

@@ -82,7 +82,7 @@ fun OnboardingScreen(navController: NavHostController, onFinish: () -> Unit) {
         ) { page ->
             OnboardingPageContent(
                 page = onboardingPages[page],
-                onSkip = onFinish,
+                onSkip = {onFinish()},
                 onNext = {
                     if (page < onboardingPages.size - 1) {
                         scope.launch {

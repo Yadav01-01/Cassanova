@@ -18,21 +18,18 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
-import androidx.compose.material3.Icon
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,10 +39,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
@@ -56,14 +53,19 @@ import com.bussiness.cassanova.ui.component.CustomSwitch
 import com.bussiness.cassanova.ui.component.SettingHeader
 import com.bussiness.cassanova.ui.component.dialog.DeleteAccountDialog
 import com.bussiness.cassanova.ui.component.dialog.LogOutDialog
-import com.bussiness.cassanova.ui.screen.main.reverse.ReservationSummaryScreen
+import com.bussiness.cassanova.ui.component.sheet.EventsSheet
 import com.bussiness.cassanova.ui.theme.TextAAColor
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingScreen(navController: NavHostController) {
+fun SettingScreen(authNavController: NavController, navController: NavHostController) {
     var notificationsEnabled by remember { mutableStateOf(true) }
     var showDeleteDialog by remember { mutableStateOf(false) }
     var showLogOutDialog by remember { mutableStateOf(false) }
+    val sheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = true,
+        confirmValueChange = { it != SheetValue.PartiallyExpanded }
+    )
     Column(
         Modifier
             .fillMaxSize()
@@ -194,6 +196,10 @@ fun SettingScreen(navController: NavHostController) {
                                     navController.navigate(Routes.CONTACT_US_SCREEN)
                                 }
 
+                                "Membership Benefits" -> {
+                                    navController.navigate(Routes.MEMBERSHIP_BENEFITS_SCREEN)
+                                }
+
                                 "Delete Account" -> {
                                     showDeleteDialog = true
                                 }
@@ -213,14 +219,52 @@ fun SettingScreen(navController: NavHostController) {
 
     }
 
-    if (showDeleteDialog){
-  DeleteAccountDialog(onDismiss = {showDeleteDialog = false}, onDeleteClick = {showDeleteDialog = false }, onCancelClick = {
-      showDeleteDialog = false
-  })
+    if (showDeleteDialog) {
+        // BottomSheetScreen()
+//        ModalBottomSheet(
+//            onDismissRequest = { showDeleteDialog = false },
+//            sheetState = sheetState,
+//            dragHandle = {
+////                Box(
+////                    modifier = Modifier
+////                        .padding(vertical = 8.dp)
+////                        .size(width = 50.dp, height = 4.dp)
+////                        .background(
+////                            color = Color.Gray,
+////                            shape = CircleShape
+////                        )
+////                )
+//            },
+//            containerColor = MaterialTheme.colorScheme.surface,
+//            contentColor = MaterialTheme.colorScheme.onSurface
+//        ) {
+                    DeleteAccountDialog(onDismiss = { showDeleteDialog = false }, onDeleteClick = {
+            showDeleteDialog = false
+
+            authNavController.navigate(Routes.PHONE_NUMBER_LOGIN_SCREEN) {
+                // Clear the back stack so user can't navigate back
+                popUpTo(Routes.MAIN_SCREEN) { inclusive = true }
+            }
+        }, onCancelClick = {
+            showDeleteDialog = false
+
+        })
+//        }
+
+          //  EventsSheet()
+
+       // }
+
     }
 
-    if (showLogOutDialog){
-        LogOutDialog(onDismiss = {showLogOutDialog = false}, onLogOutClick = {showLogOutDialog = false },onCancelClick = {
+    if (showLogOutDialog) {
+        LogOutDialog(onDismiss = { showLogOutDialog = false }, onLogOutClick = {
+            showLogOutDialog = false
+            authNavController.navigate(Routes.PHONE_NUMBER_LOGIN_SCREEN) {
+                // Clear the back stack so user can't navigate back
+                popUpTo(Routes.MAIN_SCREEN) { inclusive = true }
+            }
+        }, onCancelClick = {
             showLogOutDialog = false
         })
     }
@@ -287,8 +331,9 @@ fun SettingItemRow(
 @Preview(showBackground = true)
 @Composable
 fun SettingScreenPreview() {
+    val authNavController = rememberNavController()
     val navController = rememberNavController()
     MaterialTheme {
-        SettingScreen(navController)
+        SettingScreen(authNavController, navController)
     }
 }

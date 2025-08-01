@@ -39,9 +39,13 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.EventCarouselData
+import com.bussiness.cassanova.navigation.Routes
+import com.bussiness.cassanova.ui.component.dialog.EventInterestDialog
 import com.bussiness.cassanova.ui.component.dialog.EventsDialog
 import com.bussiness.cassanova.ui.theme.TextAAColor
 import com.bussiness.cassanova.ui.theme.gradientBrush
@@ -49,8 +53,9 @@ import com.bussiness.cassanova.viewModel.HomeViewModel
 
 
 @Composable
-fun EventItem(viewModel: HomeViewModel = hiltViewModel()){
+fun EventItem(navController: NavHostController, viewModel: HomeViewModel = hiltViewModel()){
     val events by viewModel.events.collectAsState()
+
     val sampleEvents = listOf(
         EventCarouselData(
             title = "VIP Lounge Access",
@@ -78,6 +83,7 @@ fun EventItem(viewModel: HomeViewModel = hiltViewModel()){
         // Dark background like in the image
     ) {
         EventsCarousel(
+            navController= navController,
             events = events,
             modifier = Modifier.align(Alignment.TopCenter)
         )
@@ -86,6 +92,7 @@ fun EventItem(viewModel: HomeViewModel = hiltViewModel()){
 
 @Composable
 fun EventsCarousel(
+    navController : NavHostController,
     events: List<EventCarouselData>,
     modifier: Modifier = Modifier
 ) {
@@ -112,7 +119,7 @@ fun EventsCarousel(
 
             Image(painter = painterResource(id = R.drawable.next_arrow_button),
                 contentDescription = "View all",
-                modifier = Modifier.size(25.dp).clickable{}
+                modifier = Modifier.size(25.dp).clickable{navController.navigate(Routes.EVENTS_EXPERIENCES_SCREEN)}
             )
 
         }
@@ -149,6 +156,7 @@ fun EventCard(
     modifier: Modifier = Modifier
 ) {
     var showDialog by remember { mutableStateOf(false) }
+    var showDialog2 by remember { mutableStateOf(false) }
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -222,7 +230,16 @@ fun EventCard(
         }
     }
     if (showDialog){
-        EventsDialog( onDismiss = { showDialog = false }, onSubmitClick = {showDialog = false })
+        EventsDialog( onDismiss = { showDialog = false }, onSubmitClick = {
+            showDialog = false
+            showDialog2 = true })
+    }
+
+    if (showDialog2) {
+        EventInterestDialog(
+            onSubmitClick = { showDialog2 = false },
+            onDismiss = { showDialog2 = false }
+        )
     }
 }
 

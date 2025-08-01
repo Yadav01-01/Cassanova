@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.bussiness.cassanova.navigation.Routes
 import com.bussiness.cassanova.ui.component.BookingSelection
 import com.bussiness.cassanova.ui.component.LoyaltyPointsBanner
 import com.bussiness.cassanova.ui.component.ReverseTableHeader
@@ -31,7 +32,10 @@ fun  BookingsScreen(navController: NavHostController) {
 
     Column(modifier = Modifier.fillMaxSize().background(Color.Black)) {
 
-        ReverseTableHeader(title = "My Bookings")
+        ReverseTableHeader(title = "My Bookings",onNotificationClick ={navController.navigate(Routes.NOTIFICATION_SCREEN)},
+            onSettingClick = {
+                navController.navigate(Routes.SETTING_SCREEN)
+            })
 
         Column(modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 20.dp)) {
             Row(
