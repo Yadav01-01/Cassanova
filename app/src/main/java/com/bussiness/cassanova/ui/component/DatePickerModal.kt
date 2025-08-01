@@ -1,5 +1,43 @@
 package com.bussiness.cassanova.ui.component
 
+
+import android.app.DatePickerDialog
+import android.content.Context
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
+import java.util.Calendar
+import com.bussiness.cassanova.R
+
+@Composable
+fun DatePickerModal(
+    onDateSelected: (String) -> Unit,  // Changed from Long? to String
+    onDismiss: () -> Unit
+) {
+    val context = LocalContext.current
+    val calendar = Calendar.getInstance()
+
+    // Show the dialog immediately when the composable is called
+    DatePickerDialog(
+        context,
+        R.style.DialogTheme,
+        { _, year, month, day ->
+            val formattedDate = String.format(
+                "%02d-%02d-%04d",
+                month + 1,  // Month is 0-based
+                day,
+                year
+            )
+            onDateSelected(formattedDate)
+            onDismiss()
+        },
+        calendar.get(Calendar.YEAR),
+        calendar.get(Calendar.MONTH),
+        calendar.get(Calendar.DAY_OF_MONTH)
+    ).show()
+
+    // The dialog will handle its own dismissal
+}
+/*
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -35,3 +73,5 @@ fun DatePickerModal(
         DatePicker(state = datePickerState)
     }
 }
+
+ */

@@ -115,7 +115,7 @@ fun FaqScreen(navController: NavHostController) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            verticalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             items(items) { item ->
                 ExpandableCard(
@@ -203,7 +203,9 @@ fun ExpandableCard(
                 modifier = Modifier.padding(horizontal = 10.dp, vertical = 15.dp )
             )
         }
-Spacer(Modifier.height(10.dp))
+        if (item.isExpanded){
+            Spacer(Modifier.height(10.dp))
+        }
 }
 }
 

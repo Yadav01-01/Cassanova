@@ -109,7 +109,7 @@ fun CongratulationsDialog(
                         fontSize = 18.sp,
                         modifier = Modifier.width(161.dp).height(46.dp)
                     )
-                    Spacer(Modifier.height(2.dp))
+                    Spacer(Modifier.height(1.dp))
                 }
             }
         }

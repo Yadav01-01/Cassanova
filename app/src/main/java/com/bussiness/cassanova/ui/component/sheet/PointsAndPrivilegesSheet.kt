@@ -43,7 +43,7 @@ import com.bussiness.cassanova.R
 fun PointsPrivilegesBottomSheet(
     onClose: () -> Unit
 ) {
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize().background(Color(0x804C4C4C))) {
         // Bottom Sheet Content
         Column(
             modifier = Modifier
@@ -89,7 +89,7 @@ fun PointsPrivilegesBottomSheet(
             onClick = onClose,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .offset(y = (-260).dp)
+                .offset(y = (-270).dp)
                 .background(Color.Black, shape = CircleShape)
                 .size(40.dp)
         ) {

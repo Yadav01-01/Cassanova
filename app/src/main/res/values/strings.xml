@@ -10,8 +10,6 @@
 +1 (555) 555-5555</string>
     <string name="we_sent_5_digit_in_email">We\'ve sent a 5-digit code to
 user@email.com</string>
-    <string name="enter_mobile_number">Enter your mobile number to receive a\n
-verification code</string>
-    <string name="enter_email">Enter your email ID to receive a\n
-verification code.</string>
+    <string name="enter_mobile_number">Enter your mobile number to receive a\nverification code</string>
+    <string name="enter_email">Enter your email ID to receive a\nverification code.</string>
 </resources>

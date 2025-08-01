@@ -213,13 +213,13 @@ fun ProfileScreen(navController: NavHostController) {
             ) {
                 if (!clickedEdit) {
                     CommonButton(
-                        title = "Update Now",
+                        title = "Edit Profile",
                         onClick = { clickedEdit = true },
                         modifier = Modifier.height(46.dp)
                     )
                 } else {
                     CommonButton(
-                        title = "Save Changes",
+                        title = "Update Now",
                         onClick = { clickedEdit = false },
                         modifier = Modifier.height(46.dp)
                     )
@@ -295,7 +295,7 @@ fun ProfileInfoItem(
         DatePickerModal(
             onDateSelected = { millis ->
                 millis?.let {
-                    val dateStr = convertMillisToDate(it) // You'll need to implement this
+                    val dateStr = it // convertMillisToDate(it) // You'll need to implement this
                     onValueChange(dateStr)
                 }
                 showDatePicker = false
@@ -310,7 +310,7 @@ fun ProfileInfoItem(
             .height(48.dp)
             .border(
                 width = 1.dp,
-                color = if (isEditable) Color(0xFFD4AF37) else Color(0xFF333333),
+                color = if (isEditable) Color(0xFF808080) else Color(0xFF333333),
                 shape = RoundedCornerShape(10.dp)
             )
             .padding(horizontal = 16.dp, vertical = 10.dp)

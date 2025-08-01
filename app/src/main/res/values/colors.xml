@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dialog_scrim_color">#804C4C4C</color>
+    <color name="gold_gradient_start">#FFC7A65E</color>
+    <color name="gold_gradient_center">#FFFBE29A</color>
+    <color name="gold_gradient_end">#FFBE9B43</color>
+    <color name="gold_gradient_end2">#FFFBE29A</color>
 </resources>

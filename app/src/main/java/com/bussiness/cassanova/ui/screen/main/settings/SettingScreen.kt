@@ -156,7 +156,7 @@ fun SettingScreen(authNavController: NavController, navController: NavHostContro
                 )
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(5.dp))
             Divider(thickness = 1.dp, color = Color(0xFF808080))
             // Menu Items
             LazyColumn(
@@ -214,7 +214,7 @@ fun SettingScreen(authNavController: NavController, navController: NavHostContro
                 }
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(50.dp))
         }
 
     }
@@ -279,7 +279,7 @@ fun SettingItemRow(
     onClick: () -> Unit = {}
 ) {
     Column {
-        Spacer(Modifier.height(10.dp))
+        Spacer(Modifier.height(5.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -317,7 +317,7 @@ fun SettingItemRow(
                 )
             }
         }
-        Spacer(Modifier.height(10.dp))
+        Spacer(Modifier.height(5.dp))
 
         if (item.title != "Logout") {
             Divider(thickness = 1.dp, color = Color(0xFF808080))

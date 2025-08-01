@@ -122,7 +122,7 @@ fun ReservationSummaryScreen(navController: NavHostController) {
                     title = "Guest Count",
                     value = "2 Guests",
                     gradientBrush = gradientBrush,
-onClick = {showSlotTimeDialog = true}
+onClick = {showModifyGuestSizeRequestsDialog = true}
                 )
 
                 SummaryItem(
@@ -150,6 +150,7 @@ onClick = {showSlotTimeDialog = true}
     if(showCalenderDialog){
         UpdateReservationDateDialog(onDismiss={showCalenderDialog = false}, onSubmitClick = {
             showCalenderDialog = false
+            showSlotTimeDialog = true
         })
     }
 

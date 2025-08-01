@@ -73,7 +73,7 @@ fun NotificationItem(
         modifier = Modifier
             .fillMaxWidth()
             .background(Color.Black)
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+            .padding(horizontal = 16.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         // Profile Image
@@ -81,7 +81,7 @@ fun NotificationItem(
             model = notification.profileImage,
             contentDescription = "Profile Image",
             modifier = Modifier
-                .size(40.dp)
+                .size(41.dp)
                 .clip(CircleShape),
             contentScale = ContentScale.Crop,
             placeholder = painterResource(id = android.R.drawable.ic_menu_gallery),

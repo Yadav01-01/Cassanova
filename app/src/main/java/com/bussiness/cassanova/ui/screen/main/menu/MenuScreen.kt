@@ -38,6 +38,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -173,7 +174,16 @@ fun MenuItemCardDesign(item: MenuListData) {
     ) {
 
 
-        Column {
+        Column(
+            modifier = Modifier
+                .then(
+                    if (item.isLocked) {
+                        Modifier.blur(radius = 5.dp)
+                    } else {
+                        Modifier
+                    }
+                )
+        )  {
 
 
         Row(
@@ -259,9 +269,11 @@ fun MenuItemCardDesign(item: MenuListData) {
 
         }
         if (item.isLocked) {
+
             Box(
                 modifier = Modifier
                     .matchParentSize()
+                   // .blur(radius = 8.dp)
                     .background(Color.Black.copy(alpha = 0.7f)),
                 contentAlignment = Alignment.Center
             ) {

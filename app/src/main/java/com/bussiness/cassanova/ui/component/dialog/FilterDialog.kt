@@ -194,7 +194,7 @@ fun FilterDialog(
                         }
                     }
 
-                    Spacer(modifier = Modifier.height(25.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
 
                     // Action Buttons
                     Row(

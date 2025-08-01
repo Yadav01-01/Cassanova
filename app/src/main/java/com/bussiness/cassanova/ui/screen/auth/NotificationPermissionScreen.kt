@@ -46,11 +46,13 @@ fun NotificationPermissionScreen(navController: NavHostController ) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Bell Icon
-            Image(
-                painter = painterResource(id = R.drawable.notification_icon),
-                contentDescription = "Notification Icon",
-                modifier = Modifier.size(198.dp)
-            )
+//            Image(
+//                painter = painterResource(id = R.drawable.notification_icon),
+//                contentDescription = "Notification Icon",
+//                modifier = Modifier.size(198.dp)
+//            )
+
+            AnimatedNotificationIcon()
 
             Spacer(modifier = Modifier.height(32.dp))
 
@@ -61,7 +63,7 @@ fun NotificationPermissionScreen(navController: NavHostController ) {
                 color = Color.White
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             Text(
                 text = "Get notified about your bookings, loyalty\n rewards & more.",

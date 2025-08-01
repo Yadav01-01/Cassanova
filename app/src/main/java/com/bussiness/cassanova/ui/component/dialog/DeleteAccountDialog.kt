@@ -114,7 +114,6 @@ fun DeleteAccountDialog(onDeleteClick: () -> Unit= {},
                             lineHeight = 24.sp
                         )
 
-                        Spacer(Modifier.height(5.dp))
 
                         Row(
                             modifier = Modifier.fillMaxWidth(),
