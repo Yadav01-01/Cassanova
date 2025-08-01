@@ -57,8 +57,6 @@ fun MainScreen(authNavController: NavHostController) {
     }
 }
 
-
-
 @Composable
 fun getCurrentRoute(navController: NavController): String {
     val navBackStackEntry = navController.currentBackStackEntryAsState()
