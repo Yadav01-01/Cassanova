@@ -19,8 +19,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,7 +35,6 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -52,14 +49,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.base.VerificationType
-import com.bussiness.cassanova.ui.component.CommonButton
+import com.bussiness.cassanova.ui.component.input.CommonButton
 import kotlinx.coroutines.delay
-import kotlin.compareTo
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import androidx.compose.ui.platform.LocalContext
 import com.bussiness.cassanova.navigation.Routes
-import com.bussiness.cassanova.ui.component.StatusBarPending
 import com.bussiness.cassanova.ui.component.dialog.CongratulationsDialog
 
 @Composable

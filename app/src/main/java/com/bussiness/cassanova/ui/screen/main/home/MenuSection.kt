@@ -36,18 +36,15 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.MenuItem
 import com.bussiness.cassanova.navigation.Routes
-import com.bussiness.cassanova.ui.component.BottomSheetDialog
-import com.bussiness.cassanova.ui.component.BottomSheetDialogProperties
-import com.bussiness.cassanova.ui.component.dialog.DeleteAccountDialog
+import com.bussiness.cassanova.ui.component.input.BottomSheetDialog
+import com.bussiness.cassanova.ui.component.input.BottomSheetDialogProperties
 
 import com.bussiness.cassanova.ui.component.sheet.MenuItemDetailSheet
 import com.bussiness.cassanova.ui.theme.DarkCard
-import com.bussiness.cassanova.ui.theme.GoldColor
 import com.bussiness.cassanova.ui.theme.TextAAColor
 import com.bussiness.cassanova.ui.theme.gradientBrush
 

@@ -39,11 +39,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.bussiness.cassanova.R
-import com.bussiness.cassanova.model.EventHomeData
-import com.bussiness.cassanova.model.MenuItem
 import com.bussiness.cassanova.navigation.Routes
-import com.bussiness.cassanova.ui.component.CommonButton
-import com.bussiness.cassanova.ui.component.HeaderComponent
+import com.bussiness.cassanova.ui.component.input.CommonButton
+import com.bussiness.cassanova.ui.component.input.HeaderComponent
 import com.bussiness.cassanova.ui.theme.DarkBackground
 import com.bussiness.cassanova.ui.theme.GoldColor
 import com.bussiness.cassanova.viewModel.HomeViewModel
@@ -53,8 +51,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import com.bussiness.cassanova.ui.component.DatePickerModal
-import com.bussiness.cassanova.ui.component.convertMillisToDate
+import com.bussiness.cassanova.ui.component.input.DatePickerModal
 
 
 @Composable

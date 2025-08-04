@@ -15,8 +15,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -30,12 +28,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.navigation.Routes
-import com.bussiness.cassanova.ui.component.CommonButton
-import com.bussiness.cassanova.ui.component.ReverseTableHeader
+import com.bussiness.cassanova.ui.component.input.CommonButton
+import com.bussiness.cassanova.ui.component.input.ReverseTableHeader
 import com.bussiness.cassanova.ui.screen.main.CalendarScreen
 import com.bussiness.cassanova.ui.theme.gradientBrush
-import java.time.LocalDate
-import java.time.YearMonth
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable

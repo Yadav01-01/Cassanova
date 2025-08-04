@@ -46,10 +46,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.navigation.Routes
-import com.bussiness.cassanova.ui.component.BottomSheetDialog
-import com.bussiness.cassanova.ui.component.BottomSheetDialogProperties
-import com.bussiness.cassanova.ui.component.CommonButton
-import com.bussiness.cassanova.ui.component.SummaryHeader
+import com.bussiness.cassanova.ui.component.input.BottomSheetDialog
+import com.bussiness.cassanova.ui.component.input.BottomSheetDialogProperties
+import com.bussiness.cassanova.ui.component.input.CommonButton
+import com.bussiness.cassanova.ui.component.input.SummaryHeader
 import com.bussiness.cassanova.ui.component.dialog.ReservationConfirmedDialog
 import com.bussiness.cassanova.ui.component.sheet.ModifyGuestSizeRequestsSheet
 import com.bussiness.cassanova.ui.component.sheet.ReservationRequestReceivedSheet

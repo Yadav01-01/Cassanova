@@ -38,7 +38,6 @@ import androidx.navigation.compose.rememberNavController
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.OnboardingPage
 import com.bussiness.cassanova.navigation.Routes
-import com.bussiness.cassanova.ui.component.StatusBarPending
 import kotlinx.coroutines.launch
 
 val onboardingPages = listOf(

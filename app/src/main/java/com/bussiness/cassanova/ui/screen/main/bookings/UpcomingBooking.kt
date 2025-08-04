@@ -14,11 +14,10 @@ import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.bussiness.cassanova.model.BookingItem
-import com.bussiness.cassanova.ui.component.BookingCard
-import com.bussiness.cassanova.ui.component.BottomSheetDialog
-import com.bussiness.cassanova.ui.component.BottomSheetDialogProperties
+import com.bussiness.cassanova.ui.component.input.BookingCard
+import com.bussiness.cassanova.ui.component.input.BottomSheetDialog
+import com.bussiness.cassanova.ui.component.input.BottomSheetDialogProperties
 import com.bussiness.cassanova.ui.component.sheet.CancellationReasonSheet
-import com.bussiness.cassanova.ui.component.sheet.EventInterestSheet
 
 @Composable
 fun UpcomingBookingsScreen() {

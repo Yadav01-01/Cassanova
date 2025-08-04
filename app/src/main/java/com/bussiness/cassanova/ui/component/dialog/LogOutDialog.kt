@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -35,8 +34,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.bussiness.cassanova.R
-import com.bussiness.cassanova.ui.component.CommonButton
-import com.bussiness.cassanova.ui.component.CommonWhiteBorderButton
+import com.bussiness.cassanova.ui.component.input.CommonButton
+import com.bussiness.cassanova.ui.component.input.CommonWhiteBorderButton
 
 @Composable
 fun LogOutDialog(onLogOutClick: () -> Unit= {},

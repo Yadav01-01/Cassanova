@@ -1,7 +1,5 @@
 package com.bussiness.cassanova.ui.screen.main.settings
 
-import android.R.attr.navigationBarColor
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -13,37 +11,24 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Surface
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
@@ -58,15 +43,11 @@ import coil.compose.AsyncImage
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.SettingItem
 import com.bussiness.cassanova.navigation.Routes
-import com.bussiness.cassanova.ui.component.BottomSheetBehaviorProperties
-import com.bussiness.cassanova.ui.component.BottomSheetDialog
-import com.bussiness.cassanova.ui.component.BottomSheetDialogProperties
-import com.bussiness.cassanova.ui.component.CustomSwitch
-import com.bussiness.cassanova.ui.component.NavigationBarProperties
-import com.bussiness.cassanova.ui.component.SettingHeader
+import com.bussiness.cassanova.ui.component.input.BottomSheetBehaviorProperties
+import com.bussiness.cassanova.ui.component.input.CustomSwitch
+import com.bussiness.cassanova.ui.component.input.SettingHeader
 import com.bussiness.cassanova.ui.component.dialog.DeleteAccountDialog
 import com.bussiness.cassanova.ui.component.dialog.LogOutDialog
-import com.bussiness.cassanova.ui.component.sheet.EventsSheet
 import com.bussiness.cassanova.ui.theme.TextAAColor
 
 

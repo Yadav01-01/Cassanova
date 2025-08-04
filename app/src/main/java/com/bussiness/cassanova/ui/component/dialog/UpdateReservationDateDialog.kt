@@ -35,8 +35,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.bussiness.cassanova.R
-import com.bussiness.cassanova.ui.component.CommonButton
-import com.bussiness.cassanova.ui.component.CommonWhiteBorderButton
+import com.bussiness.cassanova.ui.component.input.CommonButton
+import com.bussiness.cassanova.ui.component.input.CommonWhiteBorderButton
 import com.bussiness.cassanova.ui.screen.main.CalendarScreen
 import com.bussiness.cassanova.ui.theme.gradientBrush
 

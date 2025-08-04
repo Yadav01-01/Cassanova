@@ -2,7 +2,6 @@ package com.bussiness.cassanova.ui.component.dialog
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.bussiness.cassanova.R
-import com.bussiness.cassanova.ui.component.CommonButton
+import com.bussiness.cassanova.ui.component.input.CommonButton
 
 @Composable
 fun CongratulationsDialog(

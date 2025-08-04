@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.bussiness.cassanova.R
-import com.bussiness.cassanova.ui.component.SettingHeader
+import com.bussiness.cassanova.ui.component.input.SettingHeader
 
 
 

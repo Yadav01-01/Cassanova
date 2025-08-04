@@ -2,7 +2,6 @@ package com.bussiness.cassanova.ui.screen.auth
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,7 +12,6 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.isImeVisible
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
@@ -47,8 +45,7 @@ import com.bussiness.cassanova.R
 import com.bussiness.cassanova.base.ErrorMessages
 import com.bussiness.cassanova.base.VerificationType
 import com.bussiness.cassanova.navigation.Routes
-import com.bussiness.cassanova.ui.component.CommonButton
-import com.bussiness.cassanova.ui.component.StatusBarPending
+import com.bussiness.cassanova.ui.component.input.CommonButton
 
 @Composable
 fun EmailLoginScreen(navController: NavController = rememberNavController()) {

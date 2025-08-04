@@ -33,12 +33,11 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.NotificationData
-import com.bussiness.cassanova.ui.component.SettingHeader
+import com.bussiness.cassanova.ui.component.input.SettingHeader
 import com.bussiness.cassanova.ui.theme.TextAAColor
 import com.bussiness.cassanova.viewModel.NotificationViewModel
 

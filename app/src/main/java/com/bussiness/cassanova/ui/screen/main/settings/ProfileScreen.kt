@@ -57,10 +57,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.bussiness.cassanova.R
-import com.bussiness.cassanova.ui.component.CommonButton
-import com.bussiness.cassanova.ui.component.DatePickerModal
-import com.bussiness.cassanova.ui.component.SettingHeader
-import com.bussiness.cassanova.ui.component.convertMillisToDate
+import com.bussiness.cassanova.ui.component.input.CommonButton
+import com.bussiness.cassanova.ui.component.input.DatePickerModal
+import com.bussiness.cassanova.ui.component.input.SettingHeader
 import java.io.File
 
 @Composable

@@ -1,13 +1,11 @@
 package com.bussiness.cassanova.ui.screen.main.points
 
 import android.util.Log
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,7 +16,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
@@ -32,12 +29,11 @@ import androidx.navigation.compose.rememberNavController
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.Order
 import com.bussiness.cassanova.navigation.Routes
-import com.bussiness.cassanova.ui.component.BottomSheetDialog
-import com.bussiness.cassanova.ui.component.BottomSheetDialogProperties
-import com.bussiness.cassanova.ui.component.LoyaltyPointsBanner
-import com.bussiness.cassanova.ui.component.OrderCard
-import com.bussiness.cassanova.ui.component.ReverseTableHeader
-import com.bussiness.cassanova.ui.component.sheet.EventInterestSheet
+import com.bussiness.cassanova.ui.component.input.BottomSheetDialog
+import com.bussiness.cassanova.ui.component.input.BottomSheetDialogProperties
+import com.bussiness.cassanova.ui.component.input.LoyaltyPointsBanner
+import com.bussiness.cassanova.ui.component.input.OrderCard
+import com.bussiness.cassanova.ui.component.input.ReverseTableHeader
 import com.bussiness.cassanova.ui.component.sheet.PointsPrivilegesBottomSheet
 
 @Composable

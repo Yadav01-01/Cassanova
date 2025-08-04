@@ -27,9 +27,9 @@ import com.bussiness.cassanova.navigation.Routes
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.Reservation
 
-import com.bussiness.cassanova.ui.component.BookingSelection
-import com.bussiness.cassanova.ui.component.PreviousBanner
-import com.bussiness.cassanova.ui.component.ReverseTableHeader
+import com.bussiness.cassanova.ui.component.input.BookingSelection
+import com.bussiness.cassanova.ui.component.input.PreviousBanner
+import com.bussiness.cassanova.ui.component.input.ReverseTableHeader
 
 @Composable
 fun  BookingsScreen(navController: NavHostController) {
