@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,16 +20,17 @@ import com.bussiness.cassanova.ui.intro.OnboardingScreen
 import com.bussiness.cassanova.ui.intro.SplashScreen
 import com.bussiness.cassanova.ui.screen.auth.CassanovaVerifyOTPScreen
 import com.bussiness.cassanova.ui.screen.auth.EmailLoginScreen
+import com.bussiness.cassanova.ui.screen.auth.ExampleScreen
 import com.bussiness.cassanova.ui.screen.auth.NotificationPermissionScreen
 import com.bussiness.cassanova.ui.screen.auth.PhoneNumberLoginScreen
 import com.bussiness.cassanova.ui.screen.main.MainScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun NavGraph(navController: NavHostController) {
+fun NavGraph(navController: NavHostController , modifier : Modifier = Modifier) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = modifier
+            .fillMaxSize().statusBarsPadding()
             .navigationBarsPadding() // Handles system navigation bar
     ) {
         NavHost(
@@ -52,6 +54,7 @@ fun NavGraph(navController: NavHostController) {
             composable(Routes.EMAIL_LOGIN_SCREEN) { EmailLoginScreen(navController) }
             composable(Routes.MAIN_SCREEN) { MainScreen(navController) }
             composable(Routes.NOTIFICATION_PERMISSION_SCREEN) { NotificationPermissionScreen(navController) }
+            composable(Routes.EXAMPLE_SCREEN) { ExampleScreen(navController) }
 
             composable(
                 route = "${Routes.VERIFY_OTP_SCREEN}/{type}",

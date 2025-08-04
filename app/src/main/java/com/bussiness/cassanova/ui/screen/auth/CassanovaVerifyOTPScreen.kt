@@ -110,7 +110,7 @@ fun CassanovaVerifyOTPScreen(navController: NavHostController, type: Verificatio
         }
     }
     Column {
-        StatusBarPending()
+      //  StatusBarPending()
     Box(
         modifier = Modifier
             .fillMaxSize()

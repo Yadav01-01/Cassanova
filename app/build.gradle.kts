@@ -82,7 +82,7 @@ dependencies {
     // Hilt for Jetpack Compose
     implementation (libs.androidx.hilt.navigation.compose)
     implementation (libs.accompanist.flowlayout)
-
+    implementation ("com.google.android.material:material:1.9.0")
     implementation(project(":KomposeCountryCodePicker"))
 
 

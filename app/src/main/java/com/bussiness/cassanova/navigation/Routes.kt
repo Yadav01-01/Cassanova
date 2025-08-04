@@ -8,6 +8,7 @@ object Routes {
     const val EMAIL_LOGIN_SCREEN = "EmailLoginScreen"
     const val VERIFY_OTP_SCREEN = "CassanovaVerifyOTPScreen"
     const val NOTIFICATION_PERMISSION_SCREEN = "NotificationPermissionScreen"
+    const val EXAMPLE_SCREEN = "ExampleScreen"
 
 
     //Main

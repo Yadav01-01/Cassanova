@@ -91,7 +91,7 @@ fun PhoneNumberLoginScreen(navController: NavController = rememberNavController(
     ) {
         Column (Modifier
             .fillMaxSize()){
-            StatusBarPending()
+           // StatusBarPending()
         Column(
             modifier = Modifier
                 .fillMaxSize()

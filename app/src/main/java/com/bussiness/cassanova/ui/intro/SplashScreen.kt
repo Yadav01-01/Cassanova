@@ -26,10 +26,11 @@ fun SplashScreen(onNavigateToNext: () -> Unit) {
         onNavigateToNext()
     }
 
+
     Column(Modifier
         .fillMaxSize()) {
 
-        StatusBarPending()
+       // StatusBarPending()
     Box(
         modifier = Modifier
             .fillMaxSize()

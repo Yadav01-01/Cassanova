@@ -1,5 +1,6 @@
 package com.bussiness.cassanova.ui.screen.main.settings
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -39,9 +40,12 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.EventCarouselData
+import com.bussiness.cassanova.ui.component.BottomSheetDialog
+import com.bussiness.cassanova.ui.component.BottomSheetDialogProperties
 import com.bussiness.cassanova.ui.component.SettingHeader
-import com.bussiness.cassanova.ui.component.dialog.EventInterestDialog
-import com.bussiness.cassanova.ui.component.dialog.EventsDialog
+
+import com.bussiness.cassanova.ui.component.sheet.EventInterestSheet
+import com.bussiness.cassanova.ui.component.sheet.EventsSheet
 import com.bussiness.cassanova.ui.screen.main.home.EventsCarousel
 import com.bussiness.cassanova.ui.theme.TextAAColor
 import com.bussiness.cassanova.ui.theme.gradientBrush
@@ -195,12 +199,44 @@ fun EventCard(
         }
     }
     if (showDialog) {
-        EventsDialog(onDismiss = { showDialog = false }, onSubmitClick = { showDialog = false
-            showInterestDialog= true })
+//        EventsDialog(onDismiss = { showDialog = false }, onSubmitClick = { showDialog = false
+//            showInterestDialog= true })
+        BottomSheetDialog(
+            onDismissRequest = {
+                Log.d("[BottomSheetDialog]", "onDismissRequest")
+                showDialog = false
+            },
+            properties = BottomSheetDialogProperties(
+                dismissOnBackPress = true,
+                dismissOnClickOutside = false,
+                dismissWithAnimation = true,
+                enableEdgeToEdge = false,
+            )
+        ) {
+            EventsSheet(onDismiss={showDialog= false}, onSubmitClick={showDialog = false
+                showInterestDialog= true })
+        }
     }
 
     if (showInterestDialog){
-        EventInterestDialog(onDismiss = { showInterestDialog = false }, onSubmitClick = { showInterestDialog = false
-        })
+
+
+
+        BottomSheetDialog(
+            onDismissRequest = {
+                Log.d("[BottomSheetDialog]", "onDismissRequest")
+                showDialog = false
+            },
+            properties = BottomSheetDialogProperties(
+                dismissOnBackPress = true,
+                dismissOnClickOutside = false,
+                dismissWithAnimation = true,
+                enableEdgeToEdge = false,
+            )
+        ) {
+
+            EventInterestSheet(onDismiss = { showInterestDialog = false }, onSubmitClick = { showInterestDialog = false
+            })
+        }
     }
 }

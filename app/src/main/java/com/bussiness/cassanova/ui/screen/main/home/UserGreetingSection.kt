@@ -25,8 +25,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bussiness.cassanova.R
-import com.bussiness.cassanova.ui.component.CommonArrowButton
-import com.bussiness.cassanova.ui.component.dialog.EventInterestDialog
+
 import com.bussiness.cassanova.ui.theme.TextWhite
 import com.bussiness.cassanova.ui.theme.gradientBrush
 

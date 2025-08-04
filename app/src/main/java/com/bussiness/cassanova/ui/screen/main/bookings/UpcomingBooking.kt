@@ -1,3 +1,4 @@
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,13 +15,24 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.bussiness.cassanova.model.BookingItem
 import com.bussiness.cassanova.ui.component.BookingCard
+import com.bussiness.cassanova.ui.component.BottomSheetDialog
+import com.bussiness.cassanova.ui.component.BottomSheetDialogProperties
 import com.bussiness.cassanova.ui.component.sheet.CancellationReasonSheet
+import com.bussiness.cassanova.ui.component.sheet.EventInterestSheet
 
 @Composable
 fun UpcomingBookingsScreen() {
     var showBottomSheet by remember { mutableStateOf(false) }
-    var selectedReason by remember { mutableStateOf("") }
+   // var selectedReason by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
+    var selectedReason by remember { mutableStateOf("Select Reason*") }
+    val reasons = listOf(
+        "Booking Made by Mistake",
+        "Plans Postponed",
+        "Unable to Reach Venue",
+        "Unexpected Emergency",
+        "Other"
+    )
 
     val bookingList = listOf(
         BookingItem(
@@ -68,21 +80,51 @@ fun UpcomingBookingsScreen() {
 
         // Dialog is shown conditionally and overlays the content
         if (showBottomSheet) {
-            CancellationReasonSheet(
-                selectedReason = selectedReason,
-                description = description,
-                onReasonChange = { selectedReason = it },
-                onDescriptionChange = { description = it },
-                onDismiss = {
+            BottomSheetDialog(
+                onDismissRequest = {
+                    Log.d("[BottomSheetDialog]", "onDismissRequest")
                     showBottomSheet = false
-                    selectedReason = ""
-                    description = ""
                 },
-                onSubmitClick = {
-                    showBottomSheet = false
-                    // handle cancel submit logic
-                }
-            )
+                properties = BottomSheetDialogProperties(
+                    dismissOnBackPress = true,
+                    dismissOnClickOutside = false,
+                    dismissWithAnimation = true,
+                    enableEdgeToEdge = false,
+                )
+            ) {
+                CancellationReasonSheet(
+                    selectedReason = selectedReason,
+                    description = description,
+                    onReasonChange = { selectedReason = it },
+                    onDescriptionChange = { description = it },
+                    onDismiss = {
+                        showBottomSheet = false
+                        selectedReason = ""
+                        description = ""
+                    },
+                    onSubmitClick = {
+                        showBottomSheet = false
+                        // handle cancel submit logic
+                    },
+                    reasons = reasons
+                )
+            }
+
+//            CancellationReasonSheet(
+//                selectedReason = selectedReason,
+//                description = description,
+//                onReasonChange = { selectedReason = it },
+//                onDescriptionChange = { description = it },
+//                onDismiss = {
+//                    showBottomSheet = false
+//                    selectedReason = ""
+//                    description = ""
+//                },
+//                onSubmitClick = {
+//                    showBottomSheet = false
+//                    // handle cancel submit logic
+//                }
+//            )
         }
     }
 }

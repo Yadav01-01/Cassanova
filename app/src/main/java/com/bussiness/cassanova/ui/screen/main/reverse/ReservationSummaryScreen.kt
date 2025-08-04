@@ -1,10 +1,10 @@
 package com.bussiness.cassanova.ui.screen.main.reverse
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,21 +18,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -46,15 +34,11 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.PaintingStyle.Companion.Stroke
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -62,14 +46,15 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.navigation.Routes
+import com.bussiness.cassanova.ui.component.BottomSheetDialog
+import com.bussiness.cassanova.ui.component.BottomSheetDialogProperties
 import com.bussiness.cassanova.ui.component.CommonButton
 import com.bussiness.cassanova.ui.component.SummaryHeader
-import com.bussiness.cassanova.ui.component.dialog.ModifyGuestSizeRequestsDialog
 import com.bussiness.cassanova.ui.component.dialog.ReservationConfirmedDialog
-import com.bussiness.cassanova.ui.component.dialog.ReservationRequestReceivedDialog
-import com.bussiness.cassanova.ui.component.dialog.UpdateReservationDateDialog
-import com.bussiness.cassanova.ui.component.dialog.UpdateReservationTimeDialog
-import com.bussiness.cassanova.ui.screen.main.home.HomeScreen
+import com.bussiness.cassanova.ui.component.sheet.ModifyGuestSizeRequestsSheet
+import com.bussiness.cassanova.ui.component.sheet.ReservationRequestReceivedSheet
+import com.bussiness.cassanova.ui.component.sheet.UpdateReservationDateSheet
+import com.bussiness.cassanova.ui.component.sheet.UpdateReservationTimeSheet
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -148,25 +133,85 @@ onClick = {showModifyGuestSizeRequestsDialog = true}
     }
 
     if(showCalenderDialog){
-        UpdateReservationDateDialog(onDismiss={showCalenderDialog = false}, onSubmitClick = {
-            showCalenderDialog = false
-            showSlotTimeDialog = true
-        })
+        BottomSheetDialog(
+            onDismissRequest = {
+                Log.d("[BottomSheetDialog]", "onDismissRequest")
+                showCalenderDialog = false
+            },
+            properties = BottomSheetDialogProperties(
+                dismissOnBackPress = true,
+                dismissOnClickOutside = false,
+                dismissWithAnimation = true,
+                enableEdgeToEdge = false,
+            )
+        ) {
+            UpdateReservationDateSheet(onDismiss={showCalenderDialog = false}, onSubmitClick = {
+                showCalenderDialog = false
+                showSlotTimeDialog = true
+            })
+        }
     }
 
     if(showSlotTimeDialog){
-        UpdateReservationTimeDialog(onDismiss={showSlotTimeDialog = false}, onSubmitClick = {
-            showSlotTimeDialog = false})
+
+        BottomSheetDialog(
+            onDismissRequest = {
+                Log.d("[BottomSheetDialog]", "onDismissRequest")
+                showSlotTimeDialog = false
+            },
+            properties = BottomSheetDialogProperties(
+                dismissOnBackPress = true,
+                dismissOnClickOutside = false,
+                dismissWithAnimation = true,
+                enableEdgeToEdge = false,
+            )
+        ) {
+            UpdateReservationTimeSheet(onDismiss={showSlotTimeDialog = false}, onSubmitClick = {
+                showSlotTimeDialog = false})
+        }
+
+
     }
     if(showModifyGuestSizeRequestsDialog){
-        ModifyGuestSizeRequestsDialog(onDismiss={showModifyGuestSizeRequestsDialog = false}, onSubmitClick = {
-            showModifyGuestSizeRequestsDialog = false})
+
+        BottomSheetDialog(
+            onDismissRequest = {
+                Log.d("[BottomSheetDialog]", "onDismissRequest")
+                showModifyGuestSizeRequestsDialog = false
+            },
+            properties = BottomSheetDialogProperties(
+                dismissOnBackPress = true,
+                dismissOnClickOutside = false,
+                dismissWithAnimation = true,
+                enableEdgeToEdge = false,
+            )
+        ) {
+            ModifyGuestSizeRequestsSheet(onDismiss={showModifyGuestSizeRequestsDialog = false}, onSubmitClick = {
+                showModifyGuestSizeRequestsDialog = false})
+        }
+
+
+
     }
 
     if(showReservationRequestReceivedDialog){
-        ReservationRequestReceivedDialog(onDismiss={showReservationRequestReceivedDialog = false}, onSubmitClick = {showReservationRequestReceivedDialog = false
-            showReservationConfirmedDialog = true
-        })
+        BottomSheetDialog(
+            onDismissRequest = {
+                Log.d("[BottomSheetDialog]", "onDismissRequest")
+                showReservationRequestReceivedDialog = false
+            },
+            properties = BottomSheetDialogProperties(
+                dismissOnBackPress = true,
+                dismissOnClickOutside = false,
+                dismissWithAnimation = true,
+                enableEdgeToEdge = false,
+            )
+        ) {
+            ReservationRequestReceivedSheet(onDismiss={showReservationRequestReceivedDialog = false}, onSubmitClick = {showReservationRequestReceivedDialog = false
+                showReservationConfirmedDialog = true
+            })
+        }
+
     }
     if(showReservationConfirmedDialog){
         ReservationConfirmedDialog(onDismiss={showReservationConfirmedDialog = false}, viewButtonClick = {showReservationConfirmedDialog = false

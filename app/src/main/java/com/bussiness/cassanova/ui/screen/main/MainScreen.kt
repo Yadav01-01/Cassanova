@@ -2,6 +2,7 @@ package com.bussiness.cassanova.ui.screen.main
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -44,16 +45,15 @@ fun MainScreen(authNavController: NavHostController) {
                         popUpTo(0) { inclusive = true }
                         launchSingleTop = true
                     }
-//                    navController.navigate(navItem.route) {
-//                        popUpTo(navController.graph.startDestinationId) { saveState = true }
-//                        launchSingleTop = true
-//                        restoreState = true
-//                    }
+
                 }
             )
         }
     ){ innerPadding ->
-        MainNavGraph(authNavController= authNavController,navController = navController, modifier = Modifier.padding(innerPadding))
+        MainNavGraph(authNavController= authNavController,
+            navController = navController,
+
+            modifier = Modifier.padding(innerPadding))
     }
 }
 

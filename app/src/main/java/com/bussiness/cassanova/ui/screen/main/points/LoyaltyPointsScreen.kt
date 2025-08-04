@@ -1,5 +1,6 @@
 package com.bussiness.cassanova.ui.screen.main.points
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -31,9 +32,12 @@ import androidx.navigation.compose.rememberNavController
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.Order
 import com.bussiness.cassanova.navigation.Routes
+import com.bussiness.cassanova.ui.component.BottomSheetDialog
+import com.bussiness.cassanova.ui.component.BottomSheetDialogProperties
 import com.bussiness.cassanova.ui.component.LoyaltyPointsBanner
 import com.bussiness.cassanova.ui.component.OrderCard
 import com.bussiness.cassanova.ui.component.ReverseTableHeader
+import com.bussiness.cassanova.ui.component.sheet.EventInterestSheet
 import com.bussiness.cassanova.ui.component.sheet.PointsPrivilegesBottomSheet
 
 @Composable
@@ -104,17 +108,38 @@ fun LoyaltyPointsScreen(navController: NavHostController) {
         }
 
         // Bottom sheet (no blur applied here)
-        AnimatedVisibility(
-            visible = showBottomSheet,
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-        ) {
-            PointsPrivilegesBottomSheet(
-                onClose = {
+//        AnimatedVisibility(
+//            visible = showBottomSheet,
+//            modifier = Modifier
+//                .align(Alignment.BottomCenter)
+//                .fillMaxWidth()
+//        ) {
+//            PointsPrivilegesBottomSheet(
+//                onClose = {
+//                    showBottomSheet = false
+//                }
+//            )
+//        }
+        if (showBottomSheet){
+            BottomSheetDialog(
+                onDismissRequest = {
+                    Log.d("[BottomSheetDialog]", "onDismissRequest")
                     showBottomSheet = false
-                }
-            )
+                },
+                properties = BottomSheetDialogProperties(
+                    dismissOnBackPress = true,
+                    dismissOnClickOutside = false,
+                    dismissWithAnimation = true,
+                    enableEdgeToEdge = false,
+                )
+            ) {
+                PointsPrivilegesBottomSheet(
+                    onClose = {
+                        showBottomSheet = false
+                    }
+                )
+            }
+
         }
     }
 }

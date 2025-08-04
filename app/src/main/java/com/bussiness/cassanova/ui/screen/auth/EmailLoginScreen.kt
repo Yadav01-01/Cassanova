@@ -84,7 +84,7 @@ fun EmailLoginScreen(navController: NavController = rememberNavController()) {
             Modifier
                 .fillMaxSize()
         ) {
-            StatusBarPending()
+            //StatusBarPending()
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -226,6 +226,7 @@ fun EmailLoginScreen(navController: NavController = rememberNavController()) {
                             // Handle email login
                             println("Continue with email clicked")
                             navController.navigate(Routes.PHONE_NUMBER_LOGIN_SCREEN)
+                           // navController.navigate(Routes.EXAMPLE_SCREEN)
                         },
                         verticalAlignment = Alignment.CenterVertically
                     ) {

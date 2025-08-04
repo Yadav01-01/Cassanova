@@ -1,5 +1,7 @@
 package com.bussiness.cassanova.ui.screen.main.settings
 
+import android.R.attr.navigationBarColor
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -11,21 +13,27 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Surface
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,6 +43,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
@@ -49,24 +58,74 @@ import coil.compose.AsyncImage
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.SettingItem
 import com.bussiness.cassanova.navigation.Routes
+import com.bussiness.cassanova.ui.component.BottomSheetBehaviorProperties
+import com.bussiness.cassanova.ui.component.BottomSheetDialog
+import com.bussiness.cassanova.ui.component.BottomSheetDialogProperties
 import com.bussiness.cassanova.ui.component.CustomSwitch
+import com.bussiness.cassanova.ui.component.NavigationBarProperties
 import com.bussiness.cassanova.ui.component.SettingHeader
 import com.bussiness.cassanova.ui.component.dialog.DeleteAccountDialog
 import com.bussiness.cassanova.ui.component.dialog.LogOutDialog
 import com.bussiness.cassanova.ui.component.sheet.EventsSheet
 import com.bussiness.cassanova.ui.theme.TextAAColor
 
-@OptIn(ExperimentalMaterial3Api::class)
+
+//@OptIn(ExperimentalMaterial3Api::class)
+private enum class DarkIconsValue {
+    Default, True, False
+}
+
 @Composable
 fun SettingScreen(authNavController: NavController, navController: NavHostController) {
     var notificationsEnabled by remember { mutableStateOf(true) }
     var showDeleteDialog by remember { mutableStateOf(false) }
     var showLogOutDialog by remember { mutableStateOf(false) }
     var backPressedTime by remember { mutableStateOf(0L) }
-    val sheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = true,
-        confirmValueChange = { it != SheetValue.PartiallyExpanded }
-    )
+    val surfaceColor = androidx.compose.material.MaterialTheme.colors.surface
+    var navigationBarColor by remember(surfaceColor) {
+        mutableStateOf(surfaceColor)
+    }
+    var darkIcons by remember {
+        mutableStateOf(DarkIconsValue.Default)
+    }
+    var state by remember {
+        mutableStateOf(BottomSheetBehaviorProperties.State.Collapsed)
+    }
+    var maxWidth by remember {
+        mutableStateOf(BottomSheetBehaviorProperties.Size.NotSet)
+    }
+    var maxHeight by remember {
+        mutableStateOf(BottomSheetBehaviorProperties.Size.NotSet)
+    }
+    var isDraggable by remember {
+        mutableStateOf(true)
+    }
+    var expandedOffset by remember {
+        mutableStateOf(0)
+    }
+    var halfExpandedRatio by remember {
+        mutableStateOf(0.5F)
+    }
+    var isHideable by remember {
+        mutableStateOf(true)
+    }
+    var peekHeight by remember {
+        mutableStateOf(BottomSheetBehaviorProperties.PeekHeight.Auto)
+    }
+    var isFitToContents by remember {
+        mutableStateOf(true)
+    }
+    var skipCollapsed by remember {
+        mutableStateOf(false)
+    }
+    var isGestureInsetBottomIgnored by remember {
+        mutableStateOf(false)
+    }
+//    val sheetState = rememberModalBottomSheetState(
+//        skipPartiallyExpanded = true,
+//        confirmValueChange = { it != SheetValue.PartiallyExpanded }
+//    )
+
     Column(
         Modifier
             .fillMaxSize()
@@ -227,26 +286,9 @@ fun SettingScreen(authNavController: NavController, navController: NavHostContro
 
     }
 
+
     if (showDeleteDialog) {
-        // BottomSheetScreen()
-//        ModalBottomSheet(
-//            onDismissRequest = { showDeleteDialog = false },
-//            sheetState = sheetState,
-//            dragHandle = {
-////                Box(
-////                    modifier = Modifier
-////                        .padding(vertical = 8.dp)
-////                        .size(width = 50.dp, height = 4.dp)
-////                        .background(
-////                            color = Color.Gray,
-////                            shape = CircleShape
-////                        )
-////                )
-//            },
-//            containerColor = MaterialTheme.colorScheme.surface,
-//            contentColor = MaterialTheme.colorScheme.onSurface
-//        ) {
-                    DeleteAccountDialog(onDismiss = { showDeleteDialog = false }, onDeleteClick = {
+        DeleteAccountDialog(onDismiss = { showDeleteDialog = false }, onDeleteClick = {
             showDeleteDialog = false
 
             authNavController.navigate(Routes.PHONE_NUMBER_LOGIN_SCREEN) {
@@ -257,13 +299,10 @@ fun SettingScreen(authNavController: NavController, navController: NavHostContro
             showDeleteDialog = false
 
         })
-//        }
-
-          //  EventsSheet()
-
-       // }
 
     }
+
+
 
     if (showLogOutDialog) {
         LogOutDialog(onDismiss = { showLogOutDialog = false }, onLogOutClick = {

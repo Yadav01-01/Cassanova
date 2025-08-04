@@ -71,7 +71,7 @@ fun OnboardingScreen(navController: NavHostController, onFinish: () -> Unit) {
     Column(Modifier
         .fillMaxSize()) {
 
-        StatusBarPending()
+//        StatusBarPending()
     Box(
         modifier = Modifier
             .fillMaxSize()

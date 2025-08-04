@@ -35,7 +35,6 @@ import androidx.navigation.NavHostController
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.navigation.Routes
 import com.bussiness.cassanova.ui.component.CommonArrowButton
-import com.bussiness.cassanova.ui.component.dialog.EventInterestDialog
 import com.bussiness.cassanova.ui.theme.TextAAColor
 import com.bussiness.cassanova.ui.theme.TextWhite
 import com.bussiness.cassanova.ui.theme.gradientBrush

@@ -1,5 +1,6 @@
 package com.bussiness.cassanova.ui.screen.main.home
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -40,8 +41,11 @@ import androidx.navigation.NavHostController
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.model.MenuItem
 import com.bussiness.cassanova.navigation.Routes
+import com.bussiness.cassanova.ui.component.BottomSheetDialog
+import com.bussiness.cassanova.ui.component.BottomSheetDialogProperties
 import com.bussiness.cassanova.ui.component.dialog.DeleteAccountDialog
-import com.bussiness.cassanova.ui.component.dialog.MenuItemDetailDialog
+
+import com.bussiness.cassanova.ui.component.sheet.MenuItemDetailSheet
 import com.bussiness.cassanova.ui.theme.DarkCard
 import com.bussiness.cassanova.ui.theme.GoldColor
 import com.bussiness.cassanova.ui.theme.TextAAColor
@@ -169,8 +173,23 @@ fun MenuItemCard(item: MenuItem) {
         }
     }
 if (showDialog){
-  //  DeleteAccountDialog(onDismiss = {showDialog = false}, onDeleteClick = {showDialog = false })
-    MenuItemDetailDialog(onDismiss = {showDialog = false}, onSubmitClick = {showDialog = false })
+
+    BottomSheetDialog(
+        onDismissRequest = {
+            Log.d("[BottomSheetDialog]", "onDismissRequest")
+            showDialog = false
+        },
+        properties = BottomSheetDialogProperties(
+            dismissOnBackPress = true,
+            dismissOnClickOutside = false,
+            dismissWithAnimation = true,
+            enableEdgeToEdge = false,
+        )
+    ) {
+        MenuItemDetailSheet(onDismiss = {showDialog = false}, onSubmitClick = {showDialog = false })
+
+    }
+
 }
 
 }

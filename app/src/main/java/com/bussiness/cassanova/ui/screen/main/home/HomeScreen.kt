@@ -178,7 +178,7 @@ fun ActionButtons(navController : NavHostController) {
                 modifier = Modifier.size(18.dp)
             )
 
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(7.dp))
 
             Text(
                 text = datePicker,
@@ -189,7 +189,7 @@ fun ActionButtons(navController : NavHostController) {
                 //overflow = TextOverflow.Ellipsis
             )
 
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(7.dp))
 
             Image(
                 painter = painterResource(id = R.drawable.ic_add_icon),

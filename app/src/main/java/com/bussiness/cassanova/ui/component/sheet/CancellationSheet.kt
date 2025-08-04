@@ -48,6 +48,7 @@ import androidx.compose.ui.window.DialogProperties
 import com.bussiness.cassanova.R
 import com.bussiness.cassanova.ui.component.CommonButton
 import com.bussiness.cassanova.ui.component.CommonWhiteBorderButton
+import com.bussiness.cassanova.ui.component.spinner.CustomPowerSpinner
 
 
 @Composable
@@ -57,31 +58,22 @@ fun CancellationReasonSheet(
     onReasonChange: (String) -> Unit,
     onDescriptionChange: (String) -> Unit,
     onDismiss: () -> Unit = {},
-    onSubmitClick: () -> Unit = {}
+    onSubmitClick: () -> Unit = {},
+    reasons : List<String> = listOf<String>()
 ) {
+    var selectedReason by remember { mutableStateOf("Select Reason*") }
+
     var expanded by remember { mutableStateOf(false) }
 
-    val reasons = listOf(
-        "Booking Made by Mistake",
-        "Plans Postponed",
-        "Unable to Reach Venue",
-        "Unexpected Emergency",
-        "Other"
-    )
+//    val reasons = listOf(
+//        "Booking Made by Mistake",
+//        "Plans Postponed",
+//        "Unable to Reach Venue",
+//        "Unexpected Emergency",
+//        "Other"
+//    )
 
-    Dialog(
-        onDismissRequest = { onDismiss() },
-        properties = DialogProperties(
-            usePlatformDefaultWidth = false,
-            decorFitsSystemWindows = false
-        )
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color(0x804C4C4C)).imePadding(),
-            contentAlignment = Alignment.BottomCenter
-        ) {
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -137,63 +129,72 @@ fun CancellationReasonSheet(
                     Spacer(modifier = Modifier.height(20.dp))
 
                     // Dropdown
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .border(1.dp, Color.White, RoundedCornerShape(8.dp))
-                            .clip(RoundedCornerShape(8.dp))
-                            .background(Color.Black)
-                            .clickable { expanded = !expanded }
-                            .padding(horizontal = 12.dp, vertical = 14.dp)
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = if (selectedReason.isEmpty()) "Select Reason*" else selectedReason,
-                                color = Color.White,
-                                fontSize = 14.sp
-                            )
-                            Icon(
-                                painter = painterResource(id = if (expanded) R.drawable.arrow_up else R.drawable.arrow_down),
-                                contentDescription = "Expand",
-                                tint = Color.Unspecified
-                            )
-                        }
+//                    Box(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .border(1.dp, Color.White, RoundedCornerShape(8.dp))
+//                            .clip(RoundedCornerShape(8.dp))
+//                            .background(Color.Black)
+//                            .clickable { expanded = !expanded }
+//                            .padding(horizontal = 12.dp, vertical = 14.dp)
+//                    ) {
+//                        Row(
+//                            modifier = Modifier.fillMaxWidth(),
+//                            horizontalArrangement = Arrangement.SpaceBetween,
+//                            verticalAlignment = Alignment.CenterVertically
+//                        ) {
+//                            Text(
+//                                text = if (selectedReason.isEmpty()) "Select Reason*" else selectedReason,
+//                                color = Color.White,
+//                                fontSize = 14.sp
+//                            )
+//                            Icon(
+//                                painter = painterResource(id = if (expanded) R.drawable.arrow_up else R.drawable.arrow_down),
+//                                contentDescription = "Expand",
+//                                tint = Color.Unspecified
+//                            )
+//                        }
+//
+//                        DropdownMenu(
+//                            expanded = expanded,
+//                            onDismissRequest = { expanded = false },
+//                            modifier = Modifier
+//                                .background(Color.Black)
+//                                .fillMaxWidth().padding(horizontal = 12.dp)
+//                                .border(1.dp, Color.White, RoundedCornerShape(8.dp))
+//                        ) {
+//                            reasons.forEachIndexed { index, reason ->
+//                                DropdownMenuItem(
+//                                    text = {
+//                                        Text(
+//                                            text = reason,
+//                                            color = Color.White,
+//                                            fontFamily = FontFamily(Font(R.font.urbanist_medium)),
+//                                            fontSize = 14.sp
+//                                        )
+//                                    },
+//                                    onClick = {
+//                                        onReasonChange(reason)
+//                                        expanded = false
+//                                    }
+//                                )
+//                                // Show divider only if it's not the last item
+//                                if (index < reasons.lastIndex) {
+//                                    HorizontalDivider(thickness = 1.dp, color = Color.White)
+//                                }
+//                            }
+//                        }
+//
+//                    }
 
-                        DropdownMenu(
-                            expanded = expanded,
-                            onDismissRequest = { expanded = false },
-                            modifier = Modifier
-                                .background(Color.Black)
-                                .fillMaxWidth().padding(horizontal = 12.dp)
-                                .border(1.dp, Color.White, RoundedCornerShape(8.dp))
-                        ) {
-                            reasons.forEachIndexed { index, reason ->
-                                DropdownMenuItem(
-                                    text = {
-                                        Text(
-                                            text = reason,
-                                            color = Color.White,
-                                            fontFamily = FontFamily(Font(R.font.urbanist_medium)),
-                                            fontSize = 14.sp
-                                        )
-                                    },
-                                    onClick = {
-                                        onReasonChange(reason)
-                                        expanded = false
-                                    }
-                                )
-                                // Show divider only if it's not the last item
-                                if (index < reasons.lastIndex) {
-                                    HorizontalDivider(thickness = 1.dp, color = Color.White)
-                                }
-                            }
-                        }
-
-                    }
+                    CustomPowerSpinner(
+                        selectedText = selectedReason,
+                        onSelectionChanged = { reason ->
+                            selectedReason = reason
+                        },
+                        menuPadding = 24.dp,
+                        reasons = reasons
+                    )
 
                     Spacer(modifier = Modifier.height(20.dp))
 
@@ -243,6 +244,5 @@ fun CancellationReasonSheet(
                 }
 
             }
-        }
-    }
+
 }

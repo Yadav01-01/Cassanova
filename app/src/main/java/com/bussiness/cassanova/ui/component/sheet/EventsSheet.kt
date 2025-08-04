@@ -40,33 +40,37 @@ fun EventsSheet( onDismiss: () -> Unit = {},
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0x804C4C4C)),
+            .background(Color.Unspecified),
         contentAlignment = Alignment.BottomCenter
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
 
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_cross_icon),
-                contentDescription = "Close",
-                modifier = Modifier
-                    .clickable {
-                        onDismiss()
-                    }
-                    .align(Alignment.TopCenter)
-                    .size(40.dp)
-                    .clip(CircleShape)
-                    .padding(bottom = 8.dp)
-                    .align(Alignment.TopCenter)
-            )
+
+            Column(modifier = Modifier
+                .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+
+            ) {
+
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_cross_icon),
+                        contentDescription = "Close",
+                        modifier = Modifier
+                            .clickable {
+                                onDismiss()
+                            }
+
+                            .size(40.dp)
+                            .clip(CircleShape)
+                            .background(Color.Transparent)
+                            .padding(bottom = 8.dp)
+
+                    )
+
 
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentSize().clip(RoundedCornerShape(topEnd = 20.dp, topStart = 20.dp))
-                    .align(Alignment.BottomCenter)
                     .background(Color.Black).verticalScroll(rememberScrollState()),
             ) {
                 Box(
@@ -131,8 +135,8 @@ fun EventsSheet( onDismiss: () -> Unit = {},
 
 
             }
+            }
 
-        }
 
     }
 }

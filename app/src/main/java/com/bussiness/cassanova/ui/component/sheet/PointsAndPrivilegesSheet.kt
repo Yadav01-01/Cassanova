@@ -1,5 +1,6 @@
 package com.bussiness.cassanova.ui.component.sheet
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -44,63 +46,88 @@ import com.bussiness.cassanova.R
 fun PointsPrivilegesBottomSheet(
     onClose: () -> Unit
 ) {
-    Box(modifier = Modifier.fillMaxSize().background(Color(0x804C4C4C))) {
-        // Bottom Sheet Content
-        Column(
+    // Box(modifier = Modifier.fillMaxSize().background(Color(0x804C4C4C))) {
+    // Bottom Sheet Content
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_cross_icon),
+            contentDescription = "Close",
             modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
-                .background(Color.Black).imePadding()
-                .padding(15.dp)
-                .padding(top = 22.dp)
-        ) {
-            Text(
-                text = "Points & Privileges",
-                style = MaterialTheme.typography.titleMedium.copy(
-                    brush = Brush.linearGradient(colors = listOf(Color(0xFFC7A65E), Color(0xFFFBE29A), Color(0xFFBE9B43))),
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = FontFamily(Font(R.font.urbanist_bold)),
-                    fontSize = 30.sp,
-                    textAlign = TextAlign.Center
-                ),
-                modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = "Your loyalty brings elegant returns.",
-                style = MaterialTheme.typography.titleMedium.copy(
-                    color = Color.White,
-                    fontWeight = FontWeight.Medium,
-                    fontFamily = FontFamily(Font(R.font.urbanist_medium)),
-                    fontSize = 16.sp,
-                    textAlign = TextAlign.Center
-                ),
-                modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            Column {
-                PrivilegeItem("Use points next time (non-alcohol items only).")
-                PrivilegeItem("1$ earned per $10 spent.")
-                PrivilegeItem("Exclusive invites, curated just for you.")
-            }
-        }
-
-        // Floating Close Button
-        IconButton(
-            onClick = onClose,
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .offset(y = (-270).dp)
-                .background(Color.Black, shape = CircleShape)
+                .clickable {
+                    onClose()
+                }
                 .size(40.dp)
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_cross_icon),
-                contentDescription = "Close",
-                tint = Color.Unspecified
-            )
+                .clip(CircleShape)
+
+        )
+
+    Column(
+        modifier = Modifier
+           // .align(Alignment.BottomCenter)
+            .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
+            .background(Color.Black).imePadding()
+            .padding(15.dp)
+            .padding(top = 22.dp)
+    ) {
+        Text(
+            text = "Points & Privileges",
+            style = MaterialTheme.typography.titleMedium.copy(
+                brush = Brush.linearGradient(
+                    colors = listOf(
+                        Color(0xFFC7A65E),
+                        Color(0xFFFBE29A),
+                        Color(0xFFBE9B43)
+                    )
+                ),
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily(Font(R.font.urbanist_bold)),
+                fontSize = 30.sp,
+                textAlign = TextAlign.Center
+            ),
+            modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = "Your loyalty brings elegant returns.",
+            style = MaterialTheme.typography.titleMedium.copy(
+                color = Color.White,
+                fontWeight = FontWeight.Medium,
+                fontFamily = FontFamily(Font(R.font.urbanist_medium)),
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center
+            ),
+            modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        Column {
+            PrivilegeItem("Use points next time (non-alcohol items only).")
+            PrivilegeItem("1$ earned per $10 spent.")
+            PrivilegeItem("Exclusive invites, curated just for you.")
         }
     }
+
+    // Floating Close Button
+//    IconButton(
+//        onClick = onClose,
+//        modifier = Modifier
+//            .align(Alignment.BottomCenter)
+//            .offset(y = (-270).dp)
+//            .background(Color.Black, shape = CircleShape)
+//            .size(40.dp)
+//    ) {
+//        Icon(
+//            painter = painterResource(id = R.drawable.ic_cross_icon),
+//            contentDescription = "Close",
+//            tint = Color.Unspecified
+//        )
+//    }
+}
+   // }
 }
 
 @Composable
